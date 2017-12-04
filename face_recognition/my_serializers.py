@@ -16,27 +16,25 @@ class Result(object):
 # 识别结果返回序列化器
 class RecognitionResultSerializer():
 
-    def __init__(self, imgPath, similarity, flag):
+    def __init__(self, imgPath, ID, name, similarity, flag):
 
         self.imgPath = imgPath
+        self.ID = ID
+        self.name = name
         self.similarity = similarity
         self.flag = flag
         self._encode()
 
     def _encode(self):
 
-        if self.flag == True:
 
-            fin = open(self.imgPath, 'rb')
-            image_data = fin.read()
-            base64_data = base64.b64encode(image_data)
-            self.valid_data = {'picture': base64_data.decode(), 'similarity': self.similarity,
-                     'flag': self.flag}
+        fin = open(self.imgPath, 'rb')
+        image_data = fin.read()
+        base64_data = base64.b64encode(image_data)
+        self.valid_data = {'picture': base64_data.decode(), 'similarity': self.similarity,
+                 'flag': self.flag, 'ID':self.ID, "name":self.name}
 
-            #此处不需要json序列化，response已经完成此任务
-        else:
-            self.valid_data = {'picture': "", 'similarity': self.similarity,
-                 'flag': self.flag}
+        #此处不需要json序列化，response已经完成此任务
 
 
 
@@ -70,7 +68,6 @@ class RegisterSerializer():
     def _decode(self):
 
         ori_image_data = base64.b64decode(self.data['picture'])
-        print(type(ori_image_data))
         image = Image.open(io.BytesIO(ori_image_data))
         image = np.asarray(image)
         imageArr = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)

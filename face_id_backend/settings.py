@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import numpy as np
+import pandas as pd
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -128,11 +129,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-CANDIDATEPATH = BASE_DIR+"/face_algorithm/candidate_vec.npy"
+CANDIDATEPATH = BASE_DIR+"/face_algorithm/candidate_vec.pkl"
 IMAGEPATH = "/home/zhangxu/python_project/face_id_backend/media/"
 files = os.listdir(IMAGEPATH)
-INDEX = len(files) # 多少张图片代表多少个人，当前默认一个人一张图片
-if INDEX == 0:
-    CANDIDATE = []
+
+# 如果候选集路径，就加载，没有则新生成一个dataframe
+if  os.path.exists(CANDIDATEPATH):
+    CANDIDATE = pd.read_pickle(CANDIDATEPATH)
 else:
-    CANDIDATE = np.load(CANDIDATEPATH).tolist()
+    CANDIDATE = pd.DataFrame()
+

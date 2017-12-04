@@ -16,6 +16,7 @@ import io
 from face_algorithm.face_id import getRep, calcCossimilarity, addFaceVec
 from django.conf import settings
 from .my_serializers import RecognitionResultSerializer, RegisterSerializer, RecognitionRequestSerializer
+from .models import Info
 # Create your views here.
 
 
@@ -37,17 +38,19 @@ class FaceRecognition(APIView):
         print("bdbox:", boundingbox)
         print("threshold:", threshold)
 
-        index, similarity = calcCossimilarity(imgArr, settings.CANDIDATE)
-        print("index:", index)
+        resultId, similarity = calcCossimilarity(imgArr, settings.CANDIDATE)
+        print("resultId:", resultId)
         print("similarity:", similarity)
         if similarity >= threshold:
-            resImgPath = settings.IMAGEPATH+str(index)+".jpg"
-            resSerializer = RecognitionResultSerializer(resImgPath, similarity, True)
+            info = Info.objects.get(ID=resultId)
+            ID = info.ID
+            name = info.name
+            resImgPath = info.imgPath
+            resSerializer = RecognitionResultSerializer(resImgPath, ID, name, similarity, True)
             return Response(resSerializer.valid_data)
         else:
-            resSerializer = RecognitionResultSerializer(None, similarity, False)
-            return Response(resSerializer.valid_data)
-
+            #resSerializer = RecognitionResultSerializer(None, similarity, False)
+            return Response({"detail": "no result!"})
 
 
 class Register(APIView):
@@ -58,16 +61,17 @@ class Register(APIView):
 
         data = serializer.valid_data
         imgArr = data["picture"]
+        del data["picture"]
+        del data["boundingbox"]
+        data["imgPath"] = settings.IMAGEPATH+str(data["ID"])+".jpg"
+        try:
+            Info.objects.create(**data)
+        except:
+           return Response({"detail": "Database Info saved Error!"})
 
-        cv2.imwrite(settings.IMAGEPATH+str(settings.INDEX)+".jpg", imgArr)
-
-        settings.INDEX += 1
-
-        boundingbox = data["boundingbox"]
-        print("bdbox:", boundingbox)
+        cv2.imwrite(data["imgPath"], imgArr)
 
         # 生成特征向量并存储
-        addFaceVec(imgArr)
-        print(settings.CANDIDATE)
+        addFaceVec(imgArr, data["ID"])
 
         return Response({"detail": "new face has been saved!"})

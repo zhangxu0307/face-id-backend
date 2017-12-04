@@ -2,13 +2,12 @@
 import cv2
 import os
 import numpy as np
+import pandas as pd
 #np.set_printoptions(precision=2)
 
 import openface
 from sklearn.metrics.pairwise import cosine_similarity
 from django.conf import settings
-
-
 
 # 参数及模型加载
 fileDir = os.path.dirname(os.path.realpath(__file__))
@@ -48,18 +47,27 @@ def getRep(rgbImg):
 
 def calcCossimilarity(imgArr, candidate):
 
-    candidate = np.array(candidate) # 传入参数是个列表，先np数组化，方便矩阵操作
+    candidateArr = candidate.values # 传入参数是个dataframe
+    candidateArr = np.squeeze(np.array(candidateArr.tolist())) # 转化为numpy数组
     testVec = getRep(imgArr)
-    scoreMat = cosine_similarity(testVec, candidate)[0] # 此处是个嵌套的array
+    scoreMat = cosine_similarity(testVec, candidateArr)[0] # 此处是个嵌套的array
+    print(scoreMat.shape)
     sortIndex = np.argsort(scoreMat)
-    return sortIndex[-1], scoreMat[sortIndex[-1]]
+    resultID = candidate.index[sortIndex].values[0]
+    print(resultID)
+    return resultID, scoreMat[sortIndex[-1]]
 
-def addFaceVec(imgArr):
+def addFaceVec(imgArr, ID):
 
     addVec = getRep(imgArr)
-    settings.CANDIDATE.append(addVec)
-    np.save(settings.CANDIDATEPATH, np.array(settings.CANDIDATE))
+    addVecSeries = pd.Series([addVec], index=[ID])
+    settings.CANDIDATE = pd.concat([settings.CANDIDATE, addVecSeries], axis=0)
+    print(settings.CANDIDATE)
+    settings.CANDIDATE.to_pickle(settings.CANDIDATEPATH)
     return
+
+def deleteFaceVec(ID):
+    pass
 
 if __name__ == '__main__':
 
