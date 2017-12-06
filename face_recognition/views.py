@@ -37,8 +37,10 @@ class FaceRecognition(APIView):
         print("img:", imgArr.shape)
         print("bdbox:", boundingbox)
         print("threshold:", threshold)
-
-        resultId, similarity = calcCossimilarity(imgArr, settings.CANDIDATE)
+        try:
+            resultId, similarity = calcCossimilarity(imgArr, settings.CANDIDATE)
+        except:
+            return Response({"detail": "recognition failed!"})
         print("resultId:", resultId)
         print("similarity:", similarity)
         if similarity >= threshold:

@@ -7,3 +7,6 @@ class Info(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     imgPath = models.FilePathField()
+
+    def __unicode__(self):
+        return self.ID
