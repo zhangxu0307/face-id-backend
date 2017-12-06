@@ -47,14 +47,14 @@ def getRep(rgbImg):
 
 def calcCossimilarity(imgArr, candidate):
 
+    print(candidate)
+
     candidateArr = candidate.values # 传入参数是个dataframe
     candidateArr = np.squeeze(np.array(candidateArr.tolist())) # 转化为numpy数组
     testVec = getRep(imgArr)
     scoreMat = cosine_similarity(testVec, candidateArr)[0] # 此处是个嵌套的array
-    print(scoreMat.shape)
     sortIndex = np.argsort(scoreMat)
-    resultID = candidate.index[sortIndex].values[0]
-    print(resultID)
+    resultID = candidate.index[sortIndex].values[-1]
     return resultID, scoreMat[sortIndex[-1]]
 
 def addFaceVec(imgArr, ID):

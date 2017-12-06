@@ -25,7 +25,7 @@ class FaceRecognition(APIView):
     def post(self, request, format=None):
 
         if len(settings.CANDIDATE) == 0:
-            return Response({"Error:":"No face in database!"})
+            return Response({"detail":"No face in database!"})
 
         serializer = RecognitionRequestSerializer(data=self.request.data)
 

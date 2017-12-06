@@ -32,7 +32,7 @@ class RecognitionResultSerializer():
         image_data = fin.read()
         base64_data = base64.b64encode(image_data)
         self.valid_data = {'picture': base64_data.decode(), 'similarity': self.similarity,
-                 'flag': self.flag, 'ID':self.ID, "name":self.name}
+                 'detail': "find result!", 'ID':self.ID, "name":self.name}
 
         #此处不需要json序列化，response已经完成此任务
 
