@@ -3,6 +3,7 @@ import cv2
 import os
 import numpy as np
 import pandas as pd
+import time
 #np.set_printoptions(precision=2)
 
 import openface
@@ -18,10 +19,11 @@ openfaceModelDir = os.path.join(modelDir, 'openface')
 
 dlibModelPath = os.path.join(dlibModelDir, "shape_predictor_68_face_landmarks.dat")
 openfaceModelPath = os.path.join(openfaceModelDir, 'nn4.small2.v1.t7')
+#openfaceModelPath = os.path.join(openfaceModelDir, 'nn4.v2.t7')
 imgDim = 96
 
 align = openface.AlignDlib(dlibModelPath)
-net = openface.TorchNeuralNet(openfaceModelPath, imgDim)
+net = openface.TorchNeuralNet(openfaceModelPath, imgDim, cuda=True)
 
 
 # 获取人脸表示向量
@@ -41,6 +43,7 @@ def getRep(rgbImg):
         raise Exception("Unable to align image")
 
     rep = net.forward(alignedFace)
+
 
     return rep
 

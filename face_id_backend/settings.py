@@ -130,7 +130,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CANDIDATEPATH = BASE_DIR+"/face_algorithm/candidate_vec.pkl"
-IMAGEPATH = "/home/zhangxu/python_project/face_id_backend/media/"
+IMAGEPATH = BASE_DIR+"/media/"
 files = os.listdir(IMAGEPATH)
 
 # 如果候选集路径，就加载，没有则新生成一个dataframe

@@ -29,8 +29,8 @@
       <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/face_recognition/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+            <state relative-caret-position="1000">
+              <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding>
                 <element signature="e#2#40#0" expanded="true" />
               </folding>
@@ -53,8 +53,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/face_recognition/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="5" column="38" lean-forward="false" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
+            <state relative-caret-position="300">
+              <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -72,21 +72,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="candidate_vec.npy" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/face_algorithm/candidate_vec.npy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="7" column="14" lean-forward="false" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/face_recognition/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8">
-              <caret line="72" column="39" lean-forward="true" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="39" />
+            <state relative-caret-position="775">
+              <caret line="52" column="37" lean-forward="false" selection-start-line="52" selection-start-column="37" selection-end-line="52" selection-end-column="37" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -104,11 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="face_id.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="face_id.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/face_algorithm/face_id.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2075">
-              <caret line="83" column="14" lean-forward="true" selection-start-line="83" selection-start-column="14" selection-end-line="83" selection-end-column="14" />
+            <state relative-caret-position="325">
+              <caret line="25" column="66" lean-forward="false" selection-start-line="25" selection-start-column="66" selection-end-line="25" selection-end-column="66" />
               <folding>
                 <element signature="e#1#11#0" expanded="true" />
               </folding>
@@ -119,8 +109,18 @@
       <file leaf-file-name="recognition_zx.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_json/recognition_zx.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="0" column="1434" lean-forward="true" selection-start-line="0" selection-start-column="1434" selection-end-line="0" selection-end-column="1434" />
+            <state relative-caret-position="-3600">
+              <caret line="0" column="1562" lean-forward="true" selection-start-line="0" selection-start-column="1562" selection-end-line="0" selection-end-column="1562" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/face_id_backend/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="333">
+              <caret line="135" column="31" lean-forward="true" selection-start-line="135" selection-start-column="31" selection-end-line="135" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -129,8 +129,8 @@
       <file leaf-file-name="recognition.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_json/recognition.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="0" column="3401" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="90730" />
+            <state relative-caret-position="475">
+              <caret line="0" column="3912" lean-forward="true" selection-start-line="0" selection-start-column="3912" selection-end-line="0" selection-end-column="3912" />
               <folding />
             </state>
           </provider>
@@ -155,12 +155,12 @@
         <option value="$PROJECT_DIR$/face_recognition/serializers.py" />
         <option value="$PROJECT_DIR$/face_algorithm/candidate_vec.npy" />
         <option value="$PROJECT_DIR$/db.sqlite3" />
-        <option value="$PROJECT_DIR$/face_id_backend/settings.py" />
         <option value="$PROJECT_DIR$/test_json/register.json" />
         <option value="$PROJECT_DIR$/face_recognition/my_serializers.py" />
         <option value="$PROJECT_DIR$/face_recognition/admin.py" />
-        <option value="$PROJECT_DIR$/face_recognition/models.py" />
         <option value="$PROJECT_DIR$/face_recognition/urls.py" />
+        <option value="$PROJECT_DIR$/face_recognition/models.py" />
+        <option value="$PROJECT_DIR$/face_id_backend/settings.py" />
         <option value="$PROJECT_DIR$/face_recognition/views.py" />
         <option value="$PROJECT_DIR$/face_algorithm/face_id.py" />
       </list>
@@ -874,14 +874,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/face_id_backend/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3425">
-          <caret line="139" column="30" lean-forward="false" selection-start-line="139" selection-start-column="30" selection-end-line="139" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_json/register.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2225">
@@ -915,56 +907,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/face_recognition/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="38" lean-forward="false" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_json/recognition.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="0" column="3401" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="90730" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_json/recognition_zx.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="0" column="1434" lean-forward="true" selection-start-line="0" selection-start-column="1434" selection-end-line="0" selection-end-column="1434" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face_recognition/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding>
-            <element signature="e#2#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/face_recognition/my_serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-267">
           <caret line="50" column="63" lean-forward="false" selection-start-line="50" selection-start-column="63" selection-end-line="50" selection-end-column="63" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face_algorithm/face_id.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2075">
-          <caret line="83" column="14" lean-forward="true" selection-start-line="83" selection-start-column="14" selection-end-line="83" selection-end-column="14" />
-          <folding>
-            <element signature="e#1#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -977,12 +925,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/face_recognition/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/face_recognition/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1000">
+          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding>
+            <element signature="e#2#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/face_id_backend/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="135" column="31" lean-forward="true" selection-start-line="135" selection-start-column="31" selection-end-line="135" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_json/recognition.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="0" column="3912" lean-forward="true" selection-start-line="0" selection-start-column="3912" selection-end-line="0" selection-end-column="3912" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_json/recognition_zx.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3600">
+          <caret line="0" column="1562" lean-forward="true" selection-start-line="0" selection-start-column="1562" selection-end-line="0" selection-end-column="1562" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/face_recognition/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8">
-          <caret line="72" column="39" lean-forward="true" selection-start-line="72" selection-start-column="39" selection-end-line="72" selection-end-column="39" />
+        <state relative-caret-position="775">
+          <caret line="52" column="37" lean-forward="false" selection-start-line="52" selection-start-column="37" selection-end-line="52" selection-end-column="37" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/face_algorithm/face_id.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="25" column="66" lean-forward="false" selection-start-line="25" selection-start-column="66" selection-end-line="25" selection-end-column="66" />
+          <folding>
+            <element signature="e#1#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
