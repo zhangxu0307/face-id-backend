@@ -13,10 +13,12 @@ from django.core.files.storage import get_storage_class
 from django.core.files.base import ContentFile
 from PIL import Image
 import io
-from face_algorithm.face_id import getRep, calcCossimilarity, addFaceVec
+from face_algorithm.face_id import getRep, calcCossimilarity, addFaceVec, \
+    calcEuclidDistance, deleteFaceVec
 from django.conf import settings
 from .my_serializers import RecognitionResultSerializer, RegisterSerializer, RecognitionRequestSerializer
 from .models import Info
+import os
 # Create your views here.
 
 
@@ -39,6 +41,7 @@ class FaceRecognition(APIView):
         print("threshold:", threshold)
         try:
             resultId, similarity = calcCossimilarity(imgArr, settings.CANDIDATE)
+            #resultId, similarity = calcEuclidDistance(imgArr, settings.CANDIDATE)
         except:
             return Response({"detail": "recognition failed!"})
         print("resultId:", resultId)
@@ -77,3 +80,27 @@ class Register(APIView):
         addFaceVec(imgArr, data["ID"])
 
         return Response({"detail": "new face has been saved!"})
+
+class DeleteFace(APIView):
+
+    def post(self, request, format=None):
+
+        deleteID = self.request.data["delete_ID"]
+        try:
+            # 获取图片路径
+            info = Info.objects.get(ID=deleteID)
+            deleteImgPath = info.imgPath
+            # 删除特征向量
+            deleteFaceVec(deleteID)
+            # 删除图片文件
+            os.remove(deleteImgPath)
+            # 删除数据库记录
+            Info.objects.get(ID=deleteID).delete()
+            return Response({"detail": "delete success!"})
+
+        except:
+
+            return Response({"detail": "delete failed!"})
+
+
+

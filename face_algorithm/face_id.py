@@ -6,7 +6,7 @@ import pandas as pd
 #np.set_printoptions(precision=2)
 
 import openface
-from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances
 from django.conf import settings
 
 # 参数及模型加载
@@ -44,7 +44,7 @@ def getRep(rgbImg):
 
     return rep
 
-
+# 计算余弦相似度
 def calcCossimilarity(imgArr, candidate):
 
     print(candidate)
@@ -53,10 +53,25 @@ def calcCossimilarity(imgArr, candidate):
     candidateArr = np.squeeze(np.array(candidateArr.tolist())) # 转化为numpy数组
     testVec = getRep(imgArr)
     scoreMat = cosine_similarity(testVec, candidateArr)[0] # 此处是个嵌套的array
+    print(scoreMat)
     sortIndex = np.argsort(scoreMat)
     resultID = candidate.index[sortIndex].values[-1]
     return resultID, scoreMat[sortIndex[-1]]
 
+# 计算欧氏距离
+def calcEuclidDistance(imgArr, candidate):
+    print(candidate)
+    candidateArr = candidate.values  # 传入参数是个dataframe
+    candidateArr = np.squeeze(np.array(candidateArr.tolist()))  # 转化为numpy数组
+    testVec = getRep(imgArr)
+    scoreMat = euclidean_distances(testVec, candidateArr)[0]  # 此处是个嵌套的array
+    #scoreMat = np.power(scoreMat, 2)
+    print(scoreMat)
+    sortIndex = np.argsort(scoreMat)
+    resultID = candidate.index[sortIndex].values[0]
+    return resultID, scoreMat[sortIndex[0]]
+
+# 向特征文件中增加特征向量
 def addFaceVec(imgArr, ID):
 
     addVec = getRep(imgArr)
@@ -66,8 +81,13 @@ def addFaceVec(imgArr, ID):
     settings.CANDIDATE.to_pickle(settings.CANDIDATEPATH)
     return
 
+# 向特征文件中删除特征向量
 def deleteFaceVec(ID):
-    pass
+
+    settings.CANDIDATE = settings.CANDIDATE.drop(ID)
+    print(settings.CANDIDATE)
+    settings.CANDIDATE.to_pickle(settings.CANDIDATEPATH)
+    return
 
 if __name__ == '__main__':
 
