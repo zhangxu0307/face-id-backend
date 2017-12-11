@@ -1,37 +1,28 @@
-
+import openface
+import numpy as np
 import cv2
 import os
-import numpy as np
-import pandas as pd
-import time
-#np.set_printoptions(precision=2)
 
-import openface
-from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances
-from django.conf import settings
-
-# 参数及模型加载
+# openface参数及模型加载
 fileDir = os.path.dirname(os.path.realpath(__file__))
 modelDir = os.path.join(fileDir, 'models')
 dlibModelDir = os.path.join(modelDir, 'dlib')
 openfaceModelDir = os.path.join(modelDir, 'openface')
 
-
 dlibModelPath = os.path.join(dlibModelDir, "shape_predictor_68_face_landmarks.dat")
 openfaceModelPath = os.path.join(openfaceModelDir, 'nn4.small2.v1.t7')
-#openfaceModelPath = os.path.join(openfaceModelDir, 'nn4.v2.t7')
-imgDim = 96
 
 align = openface.AlignDlib(dlibModelPath)
-net = openface.TorchNeuralNet(openfaceModelPath, imgDim, cuda=True)
+net = openface.TorchNeuralNet(openfaceModelPath, 96, cuda=False)
 
 
-# 获取人脸表示向量
-def getRep(rgbImg):
+# 使用openface中的dlib工具检测并对齐人脸
+def findAlignFace_dlib(rgbImg, imgDim):
 
     if rgbImg is None:
         raise Exception("Unable to load image")
-    #rgbImg = cv2.cvtColor(bgrImg, cv2.COLOR_BGR2RGB)
+
+    rgbImg = cv2.cvtColor(rgbImg, cv2.COLOR_BGR2RGB) # 转换RGB
 
     bb = align.getLargestFaceBoundingBox(rgbImg)
     if bb is None:
@@ -42,80 +33,49 @@ def getRep(rgbImg):
     if alignedFace is None:
         raise Exception("Unable to align image")
 
+    return alignedFace
+
+# openface模型获取人脸表示向量
+def getRep_openface(rgbImg):
+
+    alignedFace = findAlignFace_dlib(rgbImg, 96)
+
     rep = net.forward(alignedFace)
-
-
     return rep
 
-# 计算余弦相似度
-def calcCossimilarity(imgArr, candidate):
 
-    print(candidate)
 
-    candidateArr = candidate.values # 传入参数是个dataframe
-    candidateArr = np.squeeze(np.array(candidateArr.tolist())) # 转化为numpy数组
-    testVec = getRep(imgArr)
-    scoreMat = cosine_similarity(testVec, candidateArr)[0] # 此处是个嵌套的array
-    print(scoreMat)
-    sortIndex = np.argsort(scoreMat)
-    resultID = candidate.index[sortIndex].values[-1]
-    return resultID, scoreMat[sortIndex[-1]]
+def getRep_facenet(rgbImg):
+    pass
 
-# 计算欧氏距离
-def calcEuclidDistance(imgArr, candidate):
-    print(candidate)
-    candidateArr = candidate.values  # 传入参数是个dataframe
-    candidateArr = np.squeeze(np.array(candidateArr.tolist()))  # 转化为numpy数组
-    testVec = getRep(imgArr)
-    scoreMat = euclidean_distances(testVec, candidateArr)[0]  # 此处是个嵌套的array
-    #scoreMat = np.power(scoreMat, 2)
-    print(scoreMat)
-    sortIndex = np.argsort(scoreMat)
-    resultID = candidate.index[sortIndex].values[0]
-    return resultID, scoreMat[sortIndex[0]]
-
-# 向特征文件中增加特征向量
-def addFaceVec(imgArr, ID):
-
-    addVec = getRep(imgArr)
-    addVecSeries = pd.Series([addVec], index=[ID])
-    settings.CANDIDATE = pd.concat([settings.CANDIDATE, addVecSeries], axis=0)
-    print(settings.CANDIDATE)
-    settings.CANDIDATE.to_pickle(settings.CANDIDATEPATH)
-    return
-
-# 向特征文件中删除特征向量
-def deleteFaceVec(ID):
-
-    settings.CANDIDATE = settings.CANDIDATE.drop(ID)
-    print(settings.CANDIDATE)
-    settings.CANDIDATE.to_pickle(settings.CANDIDATEPATH)
-    return
 
 if __name__ == '__main__':
 
-    faceMat = []
-    #settings.CANDIDATE
 
-    imgPath1 = "../media/Aaron_Eckhart_0001.jpg"
-    imgPath2 = "../media/Aaron_Guiel_0001.jpg"
-    imgPath3 = "../media/Aaron_Peirsol_0001.jpg"
-    imgPath4 = "../media/Aaron_Peirsol_0002.jpg"
+    imgPath1 = "../test_json/1.jpg"
+    imgPath2 = "../test_json/2.jpg"
+    imgPath3 = "../test_json/3.jpg"
+    imgPath4 = "../test_json/4.jpg"
+
     img1 = cv2.imread(imgPath1)
     img2 = cv2.imread(imgPath2)
     img3 = cv2.imread(imgPath3)
     img4 = cv2.imread(imgPath4)
-    rep1 = getRep(img1)
-    #print(rep1)
-    rep2 = getRep(img2)
-    #print(rep2)
-    rep3 = getRep(img3)
-    #print(rep3)
 
-    addFaceVec(img1)
-    addFaceVec(img2)
-    addFaceVec(img3)
+    rep1 = getRep_openface(img1)
+    rep2 = getRep_openface(img2)
+    rep3 = getRep_openface(img3)
+    rep4 = getRep_openface(img4)
 
-    index, similarity = calcCossimilarity(img4, faceMat)
-    print(index, similarity)
+    # rep1 = getRep_VGGface(img1)
+    # rep2 = getRep_VGGface(img2)
+    # rep3 = getRep_VGGface(img3)
+    # rep4 = getRep_VGGface(img4)
+
+    # 余弦相似度
+    print(np.dot(rep1, rep2.T) / (np.linalg.norm(rep1, 2) * np.linalg.norm(rep2, 2)))
+    print(np.dot(rep3, rep4.T) / (np.linalg.norm(rep3, 2) * np.linalg.norm(rep4, 2)))
+    print(np.dot(rep1, rep3.T) / (np.linalg.norm(rep1, 2) * np.linalg.norm(rep3, 2)))
+    print(np.dot(rep2, rep4.T) / (np.linalg.norm(rep2, 2) * np.linalg.norm(rep4, 2)))
+
 

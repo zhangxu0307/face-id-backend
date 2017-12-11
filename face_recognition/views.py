@@ -13,8 +13,7 @@ from django.core.files.storage import get_storage_class
 from django.core.files.base import ContentFile
 from PIL import Image
 import io
-from face_algorithm.face_id import getRep, calcCossimilarity, addFaceVec, \
-    calcEuclidDistance, deleteFaceVec
+from face_algorithm.id_utils import  calcCossimilarity, addFaceVec, calcEuclidDistance, deleteFaceVec
 from django.conf import settings
 from .my_serializers import RecognitionResultSerializer, RegisterSerializer, RecognitionRequestSerializer
 from .models import Info
