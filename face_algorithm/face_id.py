@@ -2,38 +2,14 @@ import openface
 import numpy as np
 import cv2
 import os
+from detect_align import findAlignFace_dlib
 
 # openface参数及模型加载
 fileDir = os.path.dirname(os.path.realpath(__file__))
 modelDir = os.path.join(fileDir, 'models')
-dlibModelDir = os.path.join(modelDir, 'dlib')
 openfaceModelDir = os.path.join(modelDir, 'openface')
-
-dlibModelPath = os.path.join(dlibModelDir, "shape_predictor_68_face_landmarks.dat")
 openfaceModelPath = os.path.join(openfaceModelDir, 'nn4.small2.v1.t7')
-
-align = openface.AlignDlib(dlibModelPath)
 net = openface.TorchNeuralNet(openfaceModelPath, 96, cuda=False)
-
-
-# 使用openface中的dlib工具检测并对齐人脸
-def findAlignFace_dlib(rgbImg, imgDim):
-
-    if rgbImg is None:
-        raise Exception("Unable to load image")
-
-    rgbImg = cv2.cvtColor(rgbImg, cv2.COLOR_BGR2RGB) # 转换RGB
-
-    bb = align.getLargestFaceBoundingBox(rgbImg)
-    if bb is None:
-        raise Exception("Unable to find a face")
-
-    alignedFace = align.align(imgDim, rgbImg, bb,
-                              landmarkIndices=openface.AlignDlib.OUTER_EYES_AND_NOSE)
-    if alignedFace is None:
-        raise Exception("Unable to align image")
-
-    return alignedFace
 
 # openface模型获取人脸表示向量
 def getRep_openface(rgbImg):
@@ -42,12 +18,6 @@ def getRep_openface(rgbImg):
 
     rep = net.forward(alignedFace)
     return rep
-
-
-
-def getRep_facenet(rgbImg):
-    pass
-
 
 if __name__ == '__main__':
 
@@ -67,10 +37,6 @@ if __name__ == '__main__':
     rep3 = getRep_openface(img3)
     rep4 = getRep_openface(img4)
 
-    # rep1 = getRep_VGGface(img1)
-    # rep2 = getRep_VGGface(img2)
-    # rep3 = getRep_VGGface(img3)
-    # rep4 = getRep_VGGface(img4)
 
     # 余弦相似度
     print(np.dot(rep1, rep2.T) / (np.linalg.norm(rep1, 2) * np.linalg.norm(rep2, 2)))

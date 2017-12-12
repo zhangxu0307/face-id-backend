@@ -14,9 +14,10 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/face_id_backend$real_time_face_recognition.coverage" NAME="real_time_face_recognition Coverage Results" MODIFIED="1512980535190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm/facenet/contributed" />
-    <SUITE FILE_PATH="coverage/face_id_backend$vgg_face.coverage" NAME="vgg_face Coverage Results" MODIFIED="1512982421338" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm" />
+    <SUITE FILE_PATH="coverage/face_id_backend$vgg_face.coverage" NAME="vgg_face Coverage Results" MODIFIED="1513070094713" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm" />
     <SUITE FILE_PATH="coverage/face_id_backend$real_time_face_recognition__1_.coverage" NAME="real_time_face_recognition (1) Coverage Results" MODIFIED="1512980904470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm/facenet/src" />
-    <SUITE FILE_PATH="coverage/face_id_backend$face_id.coverage" NAME="face_id Coverage Results" MODIFIED="1512979562900" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm" />
+    <SUITE FILE_PATH="coverage/face_id_backend$facenet_tf_mtcnn.coverage" NAME="facenet_tf_mtcnn Coverage Results" MODIFIED="1513068268705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm" />
+    <SUITE FILE_PATH="coverage/face_id_backend$face_id.coverage" NAME="face_id Coverage Results" MODIFIED="1513069072511" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -32,23 +33,19 @@
       <file leaf-file-name="face_id.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/face_algorithm/face_id.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="14" column="41" lean-forward="true" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="100">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="facenet_tf_mtcnn.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/face_algorithm/facenet_tf_mtcnn.py">
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/face_algorithm/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="733">
-              <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -65,21 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/face_recognition/views.py">
+      <file leaf-file-name="facenet_tf.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/face_algorithm/facenet_tf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="15" column="68" lean-forward="false" selection-start-line="15" selection-start-column="68" selection-end-line="15" selection-end-column="68" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="export_embeddings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/contributed/export_embeddings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="3" column="56" lean-forward="false" selection-start-line="3" selection-start-column="56" selection-end-line="3" selection-end-column="56" />
+            <state relative-caret-position="-1125">
+              <caret line="6" column="10" lean-forward="true" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -88,8 +75,8 @@
       <file leaf-file-name="real_time_face_recognition.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/contributed/real_time_face_recognition.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="71" column="52" lean-forward="true" selection-start-line="71" selection-start-column="52" selection-end-line="71" selection-end-column="52" />
+            <state relative-caret-position="523">
+              <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
               <folding>
                 <element signature="e#1245#1260#0" expanded="true" />
               </folding>
@@ -97,22 +84,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="face.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/contributed/face.py">
+      <file leaf-file-name="clustering.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/contributed/clustering.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="22" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="predict.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/contributed/predict.py">
+      <file leaf-file-name="face.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/contributed/face.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="325">
+              <caret line="109" column="8" lean-forward="false" selection-start-line="109" selection-start-column="8" selection-end-line="109" selection-end-column="8" />
+              <folding>
+                <element signature="e#1472#1485#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -120,8 +109,8 @@
       <file leaf-file-name="facenet.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/src/facenet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="205">
+              <caret line="225" column="21" lean-forward="true" selection-start-line="225" selection-start-column="21" selection-end-line="225" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -130,10 +119,20 @@
       <file leaf-file-name="vgg_face.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/face_algorithm/vgg_face.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="10" column="14" lean-forward="true" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+            <state relative-caret-position="175">
+              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="detect_align.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/face_algorithm/detect_align.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2000">
+              <caret line="80" column="1" lean-forward="true" selection-start-line="80" selection-start-column="1" selection-end-line="80" selection-end-column="1" />
               <folding>
-                <element signature="e#1#42#0" expanded="true" />
+                <element signature="e#0#15#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -151,6 +150,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>image</find>
+      <find>align</find>
+      <find>prew</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -174,9 +175,12 @@
         <option value="$PROJECT_DIR$/face_algorithm/facenet/src/real_time_face_recognition.py" />
         <option value="$PROJECT_DIR$/face_recognition/views.py" />
         <option value="$PROJECT_DIR$/face_algorithm/id_utils.py" />
-        <option value="$PROJECT_DIR$/face_algorithm/vgg_face.py" />
-        <option value="$PROJECT_DIR$/face_algorithm/face_id.py" />
         <option value="$PROJECT_DIR$/face_algorithm/facenet_tf_mtcnn.py" />
+        <option value="$PROJECT_DIR$/face_algorithm/face_id.py" />
+        <option value="$PROJECT_DIR$/face_algorithm/detect_align.py" />
+        <option value="$PROJECT_DIR$/face_algorithm/vgg_face.py" />
+        <option value="$PROJECT_DIR$/face_algorithm/__init__.py" />
+        <option value="$PROJECT_DIR$/face_algorithm/facenet_tf.py" />
       </list>
     </option>
   </component>
@@ -207,7 +211,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -219,34 +222,6 @@
               <item name="face_id_backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="face_id_backend" type="462c0819:PsiDirectoryNode" />
               <item name="face_algorithm" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="face_id_backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="face_id_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="face_algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="facenet" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="face_id_backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="face_id_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="face_algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="facenet" type="462c0819:PsiDirectoryNode" />
-              <item name="contributed" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="face_id_backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="face_id_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="face_algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="facenet" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="face_id_backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="face_id_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="face_algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="facenet" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="align" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="face_id_backend" type="b2602c69:ProjectViewProjectNode" />
@@ -268,6 +243,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -313,6 +289,25 @@
       <module name="face_id_backend" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/face_algorithm/face_id.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="facenet_tf_mtcnn" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/face_algorithm" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="face_id_backend" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="E:\pythonPro\face_id_backend\face_algorithm\facenet_tf.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -627,19 +622,21 @@
       <arguments />
       <envs />
     </configuration>
-    <list size="5">
+    <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Django server.face_id_backend" />
       <item index="1" class="java.lang.String" itemvalue="Python.face_id" />
       <item index="2" class="java.lang.String" itemvalue="Python.vgg_face" />
       <item index="3" class="java.lang.String" itemvalue="Python.real_time_face_recognition" />
       <item index="4" class="java.lang.String" itemvalue="Python.real_time_face_recognition (1)" />
+      <item index="5" class="java.lang.String" itemvalue="Python.facenet_tf_mtcnn" />
     </list>
     <recent_temporary>
-      <list size="4">
+      <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.vgg_face" />
-        <item index="1" class="java.lang.String" itemvalue="Python.real_time_face_recognition (1)" />
-        <item index="2" class="java.lang.String" itemvalue="Python.real_time_face_recognition" />
-        <item index="3" class="java.lang.String" itemvalue="Python.face_id" />
+        <item index="1" class="java.lang.String" itemvalue="Python.face_id" />
+        <item index="2" class="java.lang.String" itemvalue="Python.facenet_tf_mtcnn" />
+        <item index="3" class="java.lang.String" itemvalue="Python.real_time_face_recognition (1)" />
+        <item index="4" class="java.lang.String" itemvalue="Python.real_time_face_recognition" />
       </list>
     </recent_temporary>
   </component>
@@ -671,7 +668,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33033708" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19621027" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14486553" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -709,25 +706,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/media/register.json" />
-    <entry file="file://$PROJECT_DIR$/media/recognition.json" />
-    <entry file="file://$PROJECT_DIR$/face_algorithm/candidate_vec.npy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face_algorithm/face_id.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/face_recognition/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -739,9 +717,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
           <caret line="22" column="50" lean-forward="false" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
-          <folding>
-            <element signature="e#2#40#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -863,9 +838,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1125">
           <caret line="50" column="63" lean-forward="false" selection-start-line="50" selection-start-column="63" selection-end-line="50" selection-end-column="63" />
-          <folding>
-            <element signature="e#0#13#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -873,7 +845,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
           <caret line="12" column="1" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -881,7 +852,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -889,9 +859,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="950">
           <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="e#2#40#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -907,7 +874,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="0" column="3912" lean-forward="false" selection-start-line="0" selection-start-column="3912" selection-end-line="0" selection-end-column="3912" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -915,24 +881,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
           <caret line="0" column="1562" lean-forward="false" selection-start-line="0" selection-start-column="1562" selection-end-line="0" selection-end-column="1562" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/Desktop/compare.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/scp36959/home/zhangxu/python_project/facenet/src/compare.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="76" column="34" lean-forward="true" selection-start-line="76" selection-start-column="34" selection-end-line="76" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/scp36959/home/zhangxu/python_project/facenet/src/compare.py" />
     <entry file="file://$USER_HOME$/.PyCharm2017.3/system/remote_sources/-520760886/477344619/keras/engine/topology.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
           <caret line="431" column="0" lean-forward="false" selection-start-line="431" selection-start-column="0" selection-end-line="431" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -940,7 +897,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2925">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -948,34 +904,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3817">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/src/face.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/src/facenet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/src/real_time_face_recognition.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/src/face.py" />
+    <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/src/real_time_face_recognition.py" />
     <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/contributed/predict.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -984,16 +917,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/contributed/real_time_face_recognition.py">
+    <entry file="file://$PROJECT_DIR$/face_recognition/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="71" column="52" lean-forward="true" selection-start-line="71" selection-start-column="52" selection-end-line="71" selection-end-column="52" />
-          <folding>
-            <element signature="e#1245#1260#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="375">
+          <caret line="15" column="68" lean-forward="false" selection-start-line="15" selection-start-column="68" selection-end-line="15" selection-end-column="68" />
+          <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/face_algorithm/candidate_vec.npy" />
     <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/contributed/export_embeddings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1002,21 +934,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/face_recognition/views.py">
+    <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/src/align/detect_face.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="15" column="68" lean-forward="false" selection-start-line="15" selection-start-column="68" selection-end-line="15" selection-end-column="68" />
+        <state relative-caret-position="-4275">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/contributed/real_time_face_recognition.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
+          <folding>
+            <element signature="e#1245#1260#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/contributed/clustering.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/contributed/face.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="109" column="8" lean-forward="false" selection-start-line="109" selection-start-column="8" selection-end-line="109" selection-end-column="8" />
+          <folding>
+            <element signature="e#1472#1485#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/src/facenet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="225" column="21" lean-forward="true" selection-start-line="225" selection-start-column="21" selection-end-line="225" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/face_algorithm/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/face_algorithm/vgg_face.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="14" lean-forward="true" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
-          <folding>
-            <element signature="e#1#42#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="175">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1030,38 +1004,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/face_algorithm/candidate_vec.npy">
+    <entry file="file://$PROJECT_DIR$/face_algorithm/facenet_tf.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="239" />
+        <state relative-caret-position="-1125">
+          <caret line="6" column="10" lean-forward="true" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/face_algorithm/face_id.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="14" column="41" lean-forward="true" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face_algorithm/facenet/contributed/face.py">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
-          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="22" />
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/face_algorithm/facenet_tf_mtcnn.py">
+    <entry file="file://$PROJECT_DIR$/face_algorithm/detect_align.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="733">
-          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+        <state relative-caret-position="2000">
+          <caret line="80" column="1" lean-forward="true" selection-start-line="80" selection-start-column="1" selection-end-line="80" selection-end-column="1" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>

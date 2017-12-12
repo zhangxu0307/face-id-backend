@@ -6,7 +6,7 @@ from keras_vggface import utils
 import cv2
 import os
 
-from face_algorithm.face_id import findAlignFace_dlib # 使用dilib检测和对齐
+from detect_align import findAlignFace_dlib # 使用dilib检测和对齐
 
 # vgg-face模型加载
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
