@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 import cv2
+from face_id import getRep_openface
+from vgg_face import getRep_VGGface
 
 # 计算成对的余弦相似度
 def calcCosSimilarityPairs(rep1, rep2):
@@ -53,12 +55,50 @@ def getPosPairsImg():
 
         yield img1, img2
 
+def runLFW(modelName):
+
+    posScore = []
+    negScore = []
+
+    if modelName == "VGGface":
+        getRep = getRep_VGGface
+    if modelName == "openface":
+        getRep = getRep_openface
+
+    posGen = getPosPairsImg()
+    for img1, img2 in posGen:
+        try:
+            rep1 = getRep(img1)
+            rep2 = getRep(img2)
+            score = calcCosSimilarityPairs(rep1, rep2)
+        except:
+            continue
+        print(score)
+        posScore.append(score)
+
+    posCsv = pd.DataFrame(posScore)
+    posCsv.to_csv("./data/pos_score_"+modelName+".csv", index=False)
+
+    negGen = getNegPairsImg()
+    for img1, img2 in negGen:
+        try:
+            rep1 = getRep(img1)
+            rep2 = getRep(img2)
+            score = calcCosSimilarityPairs(rep1, rep2)
+        except:
+            continue
+        print(score)
+        negScore.append(score)
+
+    negCsv = pd.DataFrame(negScore)
+    negCsv.to_csv("./data/neg_score_"+modelName+".csv", index=False)
+
+
 if __name__ == '__main__':
 
-    #g = getNegPairsImg()
-    g = getPosPairsImg()
-    for img1, img2 in g:
-        print(img1.shape)
+    #modelName = "VGGface"
+    modelName = "openface"
+    runLFW(modelName)
 
 
 
