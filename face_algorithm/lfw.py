@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import cv2
 # #from face_id import getRep_openface
-# #from vgg_face import getRep_VGGface
+#from vgg_face import getRep_VGGface
 # from light_cnn_tf import getRep_lightCNN
 # #from facenet_tf import getRep_facenet_tf
 
@@ -109,11 +109,11 @@ def runLFW(modelName):
 
 if __name__ == '__main__':
 
-    modelName = "VGGface"
+    #modelName = "VGGface"
     #modelName = "openface"
 
 
-    #modelName = "lightCNN"
+    modelName = "lightCNN"
     #modelName = "facenet"
     runLFW(modelName)
 
