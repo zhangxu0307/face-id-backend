@@ -1,11 +1,13 @@
 import os
-os.environ["CUDA_VISIBLE_DEVICES"]="0"
+os.environ["CUDA_VISIBLE_DEVICES"]="1"
 import tensorflow as tf
 #import model as M
 from . import model as M
 import numpy as np
 
+
 def LCNN29():
+
 	with tf.name_scope('img_holder'):
 		img_holder = tf.placeholder(tf.float32, [None, 128, 128, 3])
 
@@ -63,7 +65,7 @@ def LCNN29():
 with tf.variable_scope('LCNN29'):
 	feature_layer, img_holder = LCNN29()
 
-# 
+
 sess = tf.Session()
 model_path = '/home/zhangxu/python_project/face_id_backend/face_algorithm/light_CNN/model_save/Epoc_49_Iter_663.cpkt'
 M.loadSess(model_path, sess)

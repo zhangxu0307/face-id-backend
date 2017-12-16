@@ -1,4 +1,5 @@
 from light_CNN import LCNN29
+import tensorflow as tf
 import numpy as np
 import cv2
 import scipy.io as sio
@@ -8,15 +9,12 @@ from detect_align import findAlignFace_dlib
 
 def getRep_lightCNN(imgArr):
 
-    img = findAlignFace_dlib(imgArr, 144)
-
-    #img = cv2.resize(alignedFace, (144, 144))
-    #M2 = np.float32([[1, 0, 11], [0, 1, 0]])
-    # img = cv2.warpAffine(imgArr, M2, (144, 144))
-
+    imgArr = findAlignFace_dlib(imgArr, 128)
+    imgArr = cv2.resize(imgArr, (122, 144))
     w = 8
     h = 8
-    img = img[w:w + 128, h:h + 128] / 255.
+    img = imgArr[w:w + 128, h:h + 128] / 255.
+    #img = imgArr/255.
     img = np.float32(img)
 
     img = img[np.newaxis, :]
@@ -24,10 +22,12 @@ def getRep_lightCNN(imgArr):
 
     imgs = np.array(img)
     feas = LCNN29.eval(imgs)
+    feas = np.reshape(feas, (512,))
 
     return feas
 
 if __name__ == '__main__':
+
     imgPath1 = "../test_json/1.jpg"
     imgPath2 = "../test_json/2.jpg"
     imgPath3 = "../test_json/3.jpg"
@@ -39,6 +39,7 @@ if __name__ == '__main__':
     img4 = cv2.imread(imgPath4)
 
     rep1 = getRep_lightCNN(img1)
+    print(rep1.shape)
     rep2 = getRep_lightCNN(img2)
     rep3 = getRep_lightCNN(img3)
     rep4 = getRep_lightCNN(img4)

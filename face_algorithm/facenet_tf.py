@@ -9,7 +9,7 @@ import cv2
 from detect_align import findAlignFace_dlib
 
 import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 gpu_memory_fraction = 0.3
 facenet_model_checkpoint = "facenet/model/20170511-185253"

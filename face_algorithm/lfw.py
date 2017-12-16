@@ -1,13 +1,17 @@
 import numpy as np
 import pandas as pd
 import cv2
-from face_id import getRep_openface
-from vgg_face import getRep_VGGface
+# #from face_id import getRep_openface
+# #from vgg_face import getRep_VGGface
+# from light_cnn_tf import getRep_lightCNN
+# #from facenet_tf import getRep_facenet_tf
+
 
 # 计算成对的余弦相似度
 def calcCosSimilarityPairs(rep1, rep2):
     return np.dot(rep1, rep2.T) / (np.linalg.norm(rep1, 2) * np.linalg.norm(rep2, 2))
 
+# 获取负样本图像pair
 def getNegPairsImg():
 
     negPairsTxt = pd.read_csv("./data/negative_pairs.txt", sep="   ", header=0)
@@ -31,7 +35,7 @@ def getNegPairsImg():
 
         yield img1,img2
 
-
+# 获取正样本图像pair
 def getPosPairsImg():
 
     posPairsTxt = pd.read_csv("./data/postive_pairs.txt", sep="   ", header=0)
@@ -55,15 +59,24 @@ def getPosPairsImg():
 
         yield img1, img2
 
+# 测试LFW数据集相似度分布情况
 def runLFW(modelName):
 
     posScore = []
     negScore = []
 
     if modelName == "VGGface":
+        from vgg_face import getRep_VGGface
         getRep = getRep_VGGface
     if modelName == "openface":
+        from face_id import getRep_openface
         getRep = getRep_openface
+    if modelName == "lightCNN":
+        from light_cnn_tf import getRep_lightCNN
+        getRep = getRep_lightCNN
+    if modelName == "facenet":
+        from facenet_tf import getRep_facenet_tf
+        getRep = getRep_facenet_tf
 
     posGen = getPosPairsImg()
     for img1, img2 in posGen:
@@ -96,8 +109,12 @@ def runLFW(modelName):
 
 if __name__ == '__main__':
 
-    #modelName = "VGGface"
-    modelName = "openface"
+    modelName = "VGGface"
+    #modelName = "openface"
+
+
+    #modelName = "lightCNN"
+    #modelName = "facenet"
     runLFW(modelName)
 
 

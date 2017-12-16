@@ -10,7 +10,7 @@ fileDir = os.path.dirname(os.path.realpath(__file__))
 modelDir = os.path.join(fileDir, 'models')
 openfaceModelDir = os.path.join(modelDir, 'openface')
 openfaceModelPath = os.path.join(openfaceModelDir, 'nn4.small2.v1.t7')
-net = openface.TorchNeuralNet(openfaceModelPath, 96, cuda=False)
+net = openface.TorchNeuralNet(openfaceModelPath, 96, cuda=True)
 
 # openface模型获取人脸表示向量
 def getRep_openface(rgbImg):

@@ -11,7 +11,7 @@ from detect_align import findAlignFace_dlib # 使用dilib检测和对齐
 
 
 # vgg-face模型加载
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 model = VGGFace(include_top=False, model='senet50', input_shape=(224, 224, 3), pooling='avg')
 
 # vggface模型回去人脸表示向量
