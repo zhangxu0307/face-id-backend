@@ -10,6 +10,7 @@ matplotlib.use('Agg')
 import os
 from matplotlib.pyplot import plot, savefig
 from glob import glob
+import pickle
 
 
 # 计算成对的余弦相似度
@@ -111,6 +112,7 @@ def runLFW(modelName):
     negCsv = pd.DataFrame(negScore)
     negCsv.to_csv("./data/neg_score_"+modelName+".csv", index=False)
 
+# 绘制相似度分布直方图
 def plotSimliarityHist(rootPath):
 
     datafilePath = glob(rootPath+"*.csv")
@@ -125,10 +127,68 @@ def plotSimliarityHist(rootPath):
         fig.savefig('./data/' + filename + ".jpg")
         break
 
+# 获取LFW数据中所有样本对的特征向量并保存成文件
+def createLFWFeatureVec(modelName):
+
+    if modelName == "VGGface":
+        from vgg_face import getRep_VGGface
+        getRep = getRep_VGGface
+    if modelName == "openface":
+        from face_id import getRep_openface
+        getRep = getRep_openface
+    if modelName == "lightCNN":
+        from light_cnn_tf import getRep_lightCNN
+        getRep = getRep_lightCNN
+    if modelName == "facenet":
+        from facenet_tf import getRep_facenet_tf
+        getRep = getRep_facenet_tf
+
+    #dirlist = sorted(os.listdir(datasetRoot))
+
+    # for dir in dirlist:
+    #     for root, d , files in os.walk(datasetRoot+dir):
+    #         for file in files:
+    #             imgPath = datasetRoot+dir+"/"+file
+    #             print(imgPath)
+    #             img = cv2.imread(imgPath)
+    #             rep = getRep(img)
+
+    posVec = []
+    posGen = getPosPairsImg()
+    for img1, img2 in posGen:
+        try:
+            rep1 = getRep(img1)
+            rep2 = getRep(img2)
+            pairsVec = [rep1, rep2]
+        except:
+            continue
+        posVec.append(pairsVec)
+
+    posFile = open('./data/lfw_pos_'+modelName+'.pkl', 'wb')
+    pickle.dump(posVec, posFile)
+    print("lfw pos rep extraction finished!")
+
+    negVec = []
+    negGen = getNegPairsImg()
+    for img1, img2 in negGen:
+        try:
+            rep1 = getRep(img1)
+            rep2 = getRep(img2)
+            pairsVec = [rep1, rep2]
+        except:
+            continue
+        negVec.append(pairsVec)
+    negFile = open('./data/lfw_neg_'+modelName+'.pkl', 'wb')
+    pickle.dump(negVec, negFile)
+    print("lfw neg rep extraction finished!")
+
+
+
+
 
 if __name__ == '__main__':
 
-    #modelName = "VGGface"
+    modelName = "VGGface"
     #modelName = "openface"
 
     #modelName = "lightCNN"
@@ -137,8 +197,19 @@ if __name__ == '__main__':
 
 
 
-    rootPath = "./data/"
-    plotSimliarityHist(rootPath)
+    #rootPath = "./data/"
+    # plotSimliarityHist(rootPath)
+
+    # lfwRoot = "./data/lfw/"
+    createLFWFeatureVec(modelName)
+
+    # pkl_file = open('./data/lfw_pos_'+modelName+'.pkl', 'rb')
+    # data1 = pickle.load(pkl_file)
+    # print(len(data1))
+
+
+
+
 
 
 
