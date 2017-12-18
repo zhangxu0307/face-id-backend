@@ -11,7 +11,7 @@ from detect_align import findAlignFace_dlib
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
-gpu_memory_fraction = 0.3
+#gpu_memory_fraction = 0.3
 facenet_model_checkpoint = "facenet/model/20170511-185253"
 classifier_model = os.path.dirname(__file__) + "/../model_checkpoints/my_classifier_1.pkl"
 debug = False
@@ -40,7 +40,7 @@ encoder = Encoder()
 
 def getRep_facenet_tf(img, ):
 
-    # alignedFace = dector.find_largest_faces(img)
+    #alignedFace = dector.find_largest_faces(img)
     # print(alignedFace.shape)
     alignedFace = findAlignFace_dlib(img, 160)
 

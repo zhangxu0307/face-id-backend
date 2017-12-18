@@ -5,6 +5,11 @@ import cv2
 #from vgg_face import getRep_VGGface
 # from light_cnn_tf import getRep_lightCNN
 # #from facenet_tf import getRep_facenet_tf
+import matplotlib
+matplotlib.use('Agg')
+import os
+from matplotlib.pyplot import plot, savefig
+from glob import glob
 
 
 # 计算成对的余弦相似度
@@ -106,17 +111,34 @@ def runLFW(modelName):
     negCsv = pd.DataFrame(negScore)
     negCsv.to_csv("./data/neg_score_"+modelName+".csv", index=False)
 
+def plotSimliarityHist(rootPath):
+
+    datafilePath = glob(rootPath+"*.csv")
+
+    for filePath in datafilePath[:]: # 此处存在一个bug，hist图会产生交叠现象，目前是手工一个个的产生
+        filename = filePath[7:-4]
+        print(filename)
+        data = pd.read_csv(filePath)
+        print(data)
+        hist = data["0"].hist()
+        fig = hist.get_figure()
+        fig.savefig('./data/' + filename + ".jpg")
+        break
+
 
 if __name__ == '__main__':
 
     #modelName = "VGGface"
     #modelName = "openface"
 
-
-    modelName = "lightCNN"
+    #modelName = "lightCNN"
     #modelName = "facenet"
-    runLFW(modelName)
+    #runLFW(modelName)
 
+
+
+    rootPath = "./data/"
+    plotSimliarityHist(rootPath)
 
 
 

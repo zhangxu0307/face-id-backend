@@ -9,12 +9,12 @@ from detect_align import findAlignFace_dlib
 
 def getRep_lightCNN(imgArr):
 
-    imgArr = findAlignFace_dlib(imgArr, 144)
+    imgArr = findAlignFace_dlib(imgArr, 128)
     #imgArr = cv2.resize(imgArr, (144, 144))
-    w = 8
-    h = 8
-    img = imgArr[w:w + 128, h:h + 128] / 255.
-    #img = imgArr/255.
+    # w = 8
+    # h = 8
+    # img = imgArr[w:w + 128, h:h + 128] / 255.
+    img = imgArr/255.
     img = np.float32(img)
 
     img = img[np.newaxis, :]
