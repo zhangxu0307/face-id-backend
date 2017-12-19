@@ -129,7 +129,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-CANDIDATEPATH = BASE_DIR+"/face_algorithm/candidate_vec.pkl"
+CANDIDATEPATH = BASE_DIR+"/media/candidate_vec.pkl"
 IMAGEPATH = BASE_DIR+"/media/"
 files = os.listdir(IMAGEPATH)
 

@@ -2,9 +2,7 @@ import openface
 import numpy as np
 import cv2
 import os
-import tensorflow as tf
-from scipy import misc
-#from face_algorithm.facenet.src.align import detect_face
+
 
 # openface参数及模型加载
 fileDir = os.path.dirname(os.path.realpath(__file__))

@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances
 from django.conf import settings
-from face_algorithm.face_id import getRep_openface
+from .face_id import getRep_openface
 from face_algorithm.vgg_face import getRep_VGGface
 
 

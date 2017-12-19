@@ -8,7 +8,7 @@ import os
 import pandas as pd
 #gpu_memory_fraction = 0.3
 
-from detect_align import findAlignFace_dlib # 使用dilib检测和对齐
+from face_algorithm.detect_align import findAlignFace_dlib # 使用dilib检测和对齐
 
 
 # vgg-face模型加载

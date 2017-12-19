@@ -164,9 +164,9 @@ def createLFWFeatureVec(modelName):
             continue
         posVec.append(pairsVec)
 
-    posFile = open('./data/lfw_pos_'+modelName+'.pkl', 'wb')
-    pickle.dump(posVec, posFile)
-    print("lfw pos rep extraction finished!")
+    # posFile = open('./data/lfw_pos_'+modelName+'.pkl', 'wb')
+    # pickle.dump(posVec, posFile)
+    # print("lfw pos rep extraction finished!")
 
     negVec = []
     negGen = getNegPairsImg()
@@ -178,18 +178,16 @@ def createLFWFeatureVec(modelName):
         except:
             continue
         negVec.append(pairsVec)
-    negFile = open('./data/lfw_neg_'+modelName+'.pkl', 'wb')
-    pickle.dump(negVec, negFile)
-    print("lfw neg rep extraction finished!")
-
-
+    # negFile = open('./data/lfw_neg_'+modelName+'.pkl', 'wb')
+    # pickle.dump(negVec, negFile)
+    # print("lfw neg rep extraction finished!")
 
 
 
 if __name__ == '__main__':
 
-    modelName = "VGGface"
-    #modelName = "openface"
+    #modelName = "VGGface"
+    modelName = "openface"
 
     #modelName = "lightCNN"
     #modelName = "facenet"
