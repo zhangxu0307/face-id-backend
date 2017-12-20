@@ -6,10 +6,12 @@ import cv2
 
 webfaceRoot = "/disk1/zhangxu_new/CASIA-WebFace/"
 
+
+# 生成某种模型的特征向量集
 def createWebfaceVec(modelName):
 
-    peopleNum = 1000 # 选取人数
-    singleSubNum = 10 # 每人选取图片数
+    peopleNum = 5000 # 选取人数
+    singleSubNum = 20 # 每人选取图片数
     datax = []
     datay = []
 
@@ -49,6 +51,7 @@ def createWebfaceVec(modelName):
     f['labels'] = datay
     f.close()
 
+# 加载某种模型的特征向量集
 def loadWebfaceVec(filename):
 
     f = h5py.File(filename, 'r')  # 打开h5文件
@@ -59,6 +62,10 @@ def loadWebfaceVec(filename):
     print(datay.shape)
     f.close()
 
+    return datax, datay
+
+
+
 
 if __name__ == '__main__':
 
@@ -66,7 +73,11 @@ if __name__ == '__main__':
     modelName = "openface"
     # modelName = "lightCNN"
     # modelName = "facenet"
+
+    # 生成某种模型的特征向量集
     createWebfaceVec(modelName)
-    loadWebfaceVec('/disk1/zhangxu_new/webface_vec_'+modelName+'.h5')
+
+    # 加载某种模型的特征向量集
+    #loadWebfaceVec('/disk1/zhangxu_new/webface_vec_'+modelName+'.h5')
 
 

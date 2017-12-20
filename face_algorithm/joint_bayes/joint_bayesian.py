@@ -1,7 +1,6 @@
-#coding=utf-8
 import sys
 import numpy as np
-from common import *
+from .common import *
 from scipy.io import loadmat
 from sklearn import metrics
 from sklearn.decomposition import PCA

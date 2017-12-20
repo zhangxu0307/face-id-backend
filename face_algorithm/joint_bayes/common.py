@@ -1,4 +1,4 @@
-import cPickle as pickle
+import pickle
 import time
 import zipfile
 import numpy as np
@@ -16,7 +16,7 @@ def print_info(msg):
 def data_to_pkl(data, file_path):
     print ("Saving data to file(%s). "%(file_path))
 
-    with open(file_path, "w") as f:
+    with open(file_path, "wb") as f:
         pickle.dump(data,f)
         return True
 

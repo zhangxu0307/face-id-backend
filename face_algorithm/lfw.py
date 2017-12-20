@@ -68,6 +68,7 @@ def getPosPairsImg():
 # 测试LFW数据集相似度分布情况
 def runLFW(modelName):
 
+    acc = 0
     posScore = []
     negScore = []
 
@@ -143,16 +144,6 @@ def createLFWFeatureVec(modelName):
         from facenet_tf import getRep_facenet_tf
         getRep = getRep_facenet_tf
 
-    #dirlist = sorted(os.listdir(datasetRoot))
-
-    # for dir in dirlist:
-    #     for root, d , files in os.walk(datasetRoot+dir):
-    #         for file in files:
-    #             imgPath = datasetRoot+dir+"/"+file
-    #             print(imgPath)
-    #             img = cv2.imread(imgPath)
-    #             rep = getRep(img)
-
     posVec = []
     posGen = getPosPairsImg()
     for img1, img2 in posGen:
@@ -164,9 +155,9 @@ def createLFWFeatureVec(modelName):
             continue
         posVec.append(pairsVec)
 
-    # posFile = open('./data/lfw_pos_'+modelName+'.pkl', 'wb')
-    # pickle.dump(posVec, posFile)
-    # print("lfw pos rep extraction finished!")
+    posFile = open('./data/lfw_pos_'+modelName+'.pkl', 'wb')
+    pickle.dump(posVec, posFile)
+    print("lfw pos rep extraction finished!")
 
     negVec = []
     negGen = getNegPairsImg()
@@ -178,32 +169,58 @@ def createLFWFeatureVec(modelName):
         except:
             continue
         negVec.append(pairsVec)
-    # negFile = open('./data/lfw_neg_'+modelName+'.pkl', 'wb')
-    # pickle.dump(negVec, negFile)
-    # print("lfw neg rep extraction finished!")
+    negFile = open('./data/lfw_neg_'+modelName+'.pkl', 'wb')
+    pickle.dump(negVec, negFile)
+    print("lfw neg rep extraction finished!")
 
+# 使用余弦相似度卡阈值计算准确率
+def runLFWScore(modelName, threshold):
+
+    acc = 0
+
+    negFile = open('./data/lfw_neg_' + modelName + '.pkl', 'rb')
+    negPairs = pickle.load(negFile)
+
+    for pair in negPairs:
+        x1 = pair[0]
+        x2 = pair[1]
+        score = calcCosSimilarityPairs(x1, x2)
+        if score < threshold:
+            acc += 1
+
+    posFile = open('./data/lfw_pos_' + modelName + '.pkl', 'rb')
+    posPairs = pickle.load(posFile)
+
+    for pair in posPairs:
+        x1 = pair[0]
+        x2 = pair[1]
+        score = calcCosSimilarityPairs(x1, x2)
+        if score > threshold:
+            acc += 1
+    print("lfw cos classify acc:", acc/(len(posPairs)+len(negPairs)))
 
 
 if __name__ == '__main__':
 
-    #modelName = "VGGface"
-    modelName = "openface"
-
+    modelName = "VGGface"
+    #modelName = "openface"
     #modelName = "lightCNN"
     #modelName = "facenet"
     #runLFW(modelName)
-
 
 
     #rootPath = "./data/"
     # plotSimliarityHist(rootPath)
 
     # lfwRoot = "./data/lfw/"
-    createLFWFeatureVec(modelName)
+    #createLFWFeatureVec(modelName)
 
     # pkl_file = open('./data/lfw_pos_'+modelName+'.pkl', 'rb')
     # data1 = pickle.load(pkl_file)
     # print(len(data1))
+
+    threshold = 0.5
+    runLFWScore(modelName, threshold)
 
 
 
