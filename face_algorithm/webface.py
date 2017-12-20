@@ -65,8 +65,6 @@ def loadWebfaceVec(filename):
     return datax, datay
 
 
-
-
 if __name__ == '__main__':
 
     #modelName = "VGGface"

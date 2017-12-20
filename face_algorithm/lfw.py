@@ -173,6 +173,7 @@ def createLFWFeatureVec(modelName):
     pickle.dump(negVec, negFile)
     print("lfw neg rep extraction finished!")
 
+
 # 使用余弦相似度卡阈值计算准确率
 def runLFWScore(modelName, threshold):
 
