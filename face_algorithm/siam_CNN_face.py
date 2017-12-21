@@ -1,4 +1,4 @@
-from siam_channel_CNN.model import Siam_Channel_Model
+from face_algorithm.siam_channel_CNN.model import Siam_Channel_Model, Siam_Model
 from lfw import getNegPairsImg, getPosPairsImg
 import numpy as np
 import cv2
@@ -6,6 +6,7 @@ import pickle
 import pandas as pd
 from detect_align import findAlignFace_dlib
 import keras
+from face_algorithm.webface import loadPairsWebface
 
 # 从LFW pairs中生成siam-cnn训练数据集，仅作为跑通模型试验用
 def createLFWSiamTrainData(imgSize):
@@ -125,12 +126,17 @@ if __name__ == '__main__':
     negScorePath = './data/siam_cnn_neg_score_file.pkl'
 
     train1, train2, label = createLFWSiamTrainData(imgSize)
+    #train1, train2, label = loadPairsWebface()
     print(train1.shape)
     print(train2.shape)
     print(label.shape)
 
+    train1 = train1/255.0
+    train2 = train2/255.0
+
     siamCnn = Siam_Channel_Model(imgSize, load=False, loadModelPath=None)
-    siamCnn.train(train1, train2, label, epoch=15, batchSize=64)
+    #siamCnn = Siam_Model(imgSize, load=False, loadModelPath=None)
+    siamCnn.train(train1, train2, label, epoch=18, batchSize=128)
     siamCnn.saveModel(modelPath)
 
     siamLFWTest(imgSize, modelPath)
