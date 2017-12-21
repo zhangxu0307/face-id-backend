@@ -18,6 +18,9 @@ from django.conf import settings
 from .my_serializers import RecognitionResultSerializer, RegisterSerializer, RecognitionRequestSerializer
 from .models import Info
 import os
+
+from face_algorithm.joint_bayes.joint_bayesian import Verify
+from face_algorithm.joint_bayes_face import A, G
 # Create your views here.
 
 
@@ -38,19 +41,28 @@ class FaceRecognition(APIView):
         print("img:", imgArr.shape)
         print("bdbox:", boundingbox)
         print("threshold:", threshold)
+
+        jointBayesThreshold = 30 # joint bayes的阈值，
+
+        # 召回相似度最高的人
         try:
-            resultId, similarity = calcCossimilarity(imgArr, settings.CANDIDATE)
+            resultId, similarity, v1, v2 = calcCossimilarity(imgArr, settings.CANDIDATE)
             #resultId, similarity = calcEuclidDistance(imgArr, settings.CANDIDATE)
         except:
             return Response({"detail": "recognition failed!"})
         print("resultId:", resultId)
         print("similarity:", similarity)
-        if similarity >= threshold:
-            info = Info.objects.get(ID=resultId)
-            ID = info.ID
-            name = info.name
-            resImgPath = info.imgPath
-            resSerializer = RecognitionResultSerializer(resImgPath, ID, name, similarity, True)
+        #if similarity >= threshold:
+        info = Info.objects.get(ID=resultId)
+        ID = info.ID
+        name = info.name
+        resImgPath = info.imgPath
+        resSerializer = RecognitionResultSerializer(resImgPath, ID, name, similarity, True)
+
+        # 使用joint bayes进行二次验证
+        jointBayesScore = Verify(A, G, v1, v2)
+        print(jointBayesScore)
+        if (jointBayesScore > jointBayesThreshold):
             return Response(resSerializer.valid_data)
         else:
             #resSerializer = RecognitionResultSerializer(None, similarity, False)

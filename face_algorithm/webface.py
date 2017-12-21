@@ -10,8 +10,8 @@ webfaceRoot = "/disk1/zhangxu_new/CASIA-WebFace/"
 # 生成某种模型的特征向量集
 def createWebfaceVec(modelName):
 
-    peopleNum = 5000 # 选取人数
-    singleSubNum = 20 # 每人选取图片数
+    peopleNum = 8000 # 选取人数
+    singleSubNum = 25 # 每人选取图片数
     datax = []
     datay = []
 
@@ -63,6 +63,15 @@ def loadWebfaceVec(filename):
     f.close()
 
     return datax, datay
+
+# 使用webface数据集生成正负样本对
+def createPairs():
+
+    posPairNum = 10000
+    negPairNum = 10000
+
+    
+
 
 
 if __name__ == '__main__':

@@ -19,7 +19,7 @@ def calcCossimilarity(imgArr, candidate):
     print(scoreMat)
     sortIndex = np.argsort(scoreMat)
     resultID = candidate.index[sortIndex].values[-1]
-    return resultID, scoreMat[sortIndex[-1]]
+    return resultID, scoreMat[sortIndex[-1]], testVec, candidateArr[sortIndex[-1], :] # 顺带返回特征向量，准备二次验证
 
 # 计算欧氏距离
 def calcEuclidDistance(imgArr, candidate):
