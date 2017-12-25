@@ -1,0 +1,12 @@
+数据说明
+disk1
+webface_pairs.h5 128*128*3图像 align
+webface_pairs_v2.h5 128*128*3图像 align 正负样本对每人5张
+webface_pairs_v3.h5 224*224*3图像 align 正负样本对每人5张，用于vggface的saimse-cnn训练
+webface_vec_openface.h5 openface在webface数据集上的特征向量，用于训练joint-bayes
+webface_vec_VGGface.h5 vggface在webface数据集上的特征向量，用于训练joint-bayes
+lfw_pairs.h5 128*128*3图像，align，用于测试
+
+home/zhangxu/models
+A.pkl G.pkl joint bayes模型训练参数文件
+saim_cnn.h5 孪生网络cnn模型权重文件

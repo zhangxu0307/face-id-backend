@@ -9,7 +9,7 @@ from face_algorithm.detect_align import findAlignFace_dlib
 webfaceRoot = "/disk1/zhangxu_new/CASIA-WebFace/"
 
 
-# 生成某种模型的特征向量集
+# 由webface数据集生成某种模型的特征向量集
 def createWebfaceVec(modelName):
 
     peopleNum = 8000 # 选取人数
@@ -67,12 +67,11 @@ def loadWebfaceVec(filename):
     return datax, datay
 
 
-
 # 使用webface数据集生成正负样本对
-def createPairsWebface():
+def createPairsWebface(saveFileName):
 
-    posNum = 5
-    negNum = 5
+    posNum = 2
+    negNum = 2
     imgSize = 128
 
     trainPair1 = []
@@ -92,10 +91,13 @@ def createPairsWebface():
         anchorImgPath = webfaceRoot + dir + "/" + anchor
         print("anchor img path:", anchorImgPath)
         anchorImg = cv2.imread(anchorImgPath)
+
         try:
             anchorImg = findAlignFace_dlib(anchorImg, imgSize)
         except:
             continue
+        anchorImg = cv2.cvtColor(anchorImg, cv2.COLOR_RGB2GRAY)
+        anchorImg = anchorImg[:, :, np.newaxis]
 
         for i in range(negNum):
 
@@ -113,9 +115,12 @@ def createPairsWebface():
             negImg = cv2.imread(negImgPath)
 
             try:
-                negImg = findAlignFace_dlib(negImg , imgSize)
+                negImg = findAlignFace_dlib(negImg, imgSize)
             except:
                 continue
+            negImg = cv2.cvtColor(negImg, cv2.COLOR_RGB2GRAY)
+            negImg = negImg[:, :, np.newaxis]
+
 
             trainPair1.append(anchorImg)
             trainPair2.append(negImg)
@@ -136,12 +141,14 @@ def createPairsWebface():
                 posImg = findAlignFace_dlib(posImg , imgSize)
             except:
                 continue
+            posImg = cv2.cvtColor(posImg, cv2.COLOR_RGB2GRAY)
+            posImg = posImg[:, :, np.newaxis]
 
             trainPair1.append(anchorImg)
             trainPair2.append(posImg)
             label.append(1)
 
-    f = h5py.File('/disk1/zhangxu_new/webface_pairs_v2.h5', 'w')
+    f = h5py.File(saveFileName, 'w')
     f['train_pair1'] = np.array(trainPair1)
     f['train_pair2'] = np.array(trainPair2)
     f['label'] = np.array(label)
@@ -149,14 +156,52 @@ def createPairsWebface():
     #return np.array(trainPair1), np.array(trainPair2), np.array(label)
 
 # 加载webface正负样本对
-def loadPairsWebface():
+def loadPairsWebface(filename):
 
-    f = h5py.File('/disk1/zhangxu_new/webface_pairs.h5', 'r')  # 打开h5文件
+    f = h5py.File(filename, 'r')  # 打开h5文件
     trainPairs1 = f['train_pair1'][:]
     trainPairs2 = f['train_pair2'][:]
     label = f['label'][:]
     f.close()
     return trainPairs1, trainPairs2, label
+
+# 生成webface原始数据h5文件
+def createWebfaceRawData(imgSize):
+
+    peopleNum = 1000
+    singleSubNum = 10
+    datax = []
+    datay = []
+    dirlist = sorted(os.listdir(webfaceRoot))[:peopleNum]
+
+    for index, dir in enumerate(dirlist):
+        print("%d people running..." % index)
+        for root, d, files in os.walk(webfaceRoot + dir):
+            for file in files[:singleSubNum]:
+                imgPath = webfaceRoot + dir + "/" + file
+                img = cv2.imread(imgPath)
+                try:
+                    faceImg = findAlignFace_dlib(img, imgSize)
+                except:
+                    continue
+                datax.append(faceImg)
+                datay.append(index)
+    datax = np.array(datax)
+    datay = np.array(datay)
+
+    f = h5py.File('/disk1/zhangxu_new/webface_origin_data.h5', 'w')
+    f['data'] = datax
+    f['labels'] = datay
+    f.close()
+
+# 加载webface原始数据h5文件
+def loadWebfaceRawData(filename):
+
+    f = h5py.File(filename, 'r')  # 打开h5文件
+    data = f['data'][:]
+    label = f['labels'][:]
+    f.close()
+    return data, label
 
 if __name__ == '__main__':
 
@@ -171,11 +216,20 @@ if __name__ == '__main__':
     # 加载某种模型的特征向量集
     #loadWebfaceVec('/disk1/zhangxu_new/webface_vec_'+modelName+'.h5')
 
-    createPairsWebface()
-    train1, train2, label = loadPairsWebface()
-    print(train1.shape)
-    print(train2.shape)
+    # pairsFileName = '/disk1/zhangxu_new/webface_pairs_gray_v1.h5'
+    # #
+    # createPairsWebface(pairsFileName)
+    # train1, train2, label = loadPairsWebface(pairsFileName)
+    # print(train1.shape)
+    # print(train2.shape)
+    # print(label.shape)
+
+    webfaceRawDataFile = '/disk1/zhangxu_new/webface_origin_data.h5'
+    createWebfaceRawData(imgSize=128)
+    data, label = loadWebfaceRawData(webfaceRawDataFile)
+    print(data.shape)
     print(label.shape)
+
 
 
 

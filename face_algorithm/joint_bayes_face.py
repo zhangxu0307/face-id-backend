@@ -12,8 +12,8 @@ import pickle
 import pandas as pd
 from django.conf import settings
 
-#modelPath = settings.BASE_DIR+"/face_algorithm/models/" # django工程路径写法
-modelPath = "./models/"
+modelPath = settings.BASE_DIR+"/face_algorithm/models/" # django工程路径写法
+#modelPath = "./models/"
 with open(modelPath + "A.pkl", "rb") as f:
     A = pickle.load(f)
 with open(modelPath + "G.pkl", "rb") as f:
