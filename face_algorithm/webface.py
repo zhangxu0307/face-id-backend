@@ -10,10 +10,10 @@ webfaceRoot = "/disk1/zhangxu_new/CASIA-WebFace/"
 
 
 # 由webface数据集生成某种模型的特征向量集
-def createWebfaceVec(modelName):
+def createWebfaceVec(modelName, saveFilePath):
 
-    peopleNum = 8000 # 选取人数
-    singleSubNum = 25 # 每人选取图片数
+    peopleNum = 5000 # 选取人数
+    singleSubNum = 50 # 每人选取图片数
     datax = []
     datay = []
 
@@ -35,7 +35,7 @@ def createWebfaceVec(modelName):
     for index, dir in enumerate(dirlist):
         print("%d people running..." %index)
         for root, d , files in os.walk(webfaceRoot+dir):
-            for file in files[:singleSubNum]:
+            for file in files[:]:
                 imgPath = webfaceRoot+dir+"/"+file
                 #print(imgPath)
                 img = cv2.imread(imgPath)
@@ -48,7 +48,7 @@ def createWebfaceVec(modelName):
     datax = np.array(datax)
     datay = np.array(datay)
 
-    f = h5py.File('/disk1/zhangxu_new/webface_vec_'+modelName+'.h5', 'w')
+    f = h5py.File(saveFilePath, 'w')
     f['data'] = datax
     f['labels'] = datay
     f.close()
@@ -166,10 +166,10 @@ def loadPairsWebface(filename):
     return trainPairs1, trainPairs2, label
 
 # 生成webface原始数据h5文件
-def createWebfaceRawData(imgSize):
+def createWebfaceRawData(imgSize, saveFilePath):
 
-    peopleNum = 1000
-    singleSubNum = 10
+    peopleNum = 5000
+    singleSubNum = 15
     datax = []
     datay = []
     dirlist = sorted(os.listdir(webfaceRoot))[:peopleNum]
@@ -177,7 +177,8 @@ def createWebfaceRawData(imgSize):
     for index, dir in enumerate(dirlist):
         print("%d people running..." % index)
         for root, d, files in os.walk(webfaceRoot + dir):
-            for file in files[:singleSubNum]:
+            print("img num:", len(files))
+            for file in files[:]:
                 imgPath = webfaceRoot + dir + "/" + file
                 img = cv2.imread(imgPath)
                 try:
@@ -189,7 +190,7 @@ def createWebfaceRawData(imgSize):
     datax = np.array(datax)
     datay = np.array(datay)
 
-    f = h5py.File('/disk1/zhangxu_new/webface_origin_data.h5', 'w')
+    f = h5py.File(saveFilePath, 'w')
     f['data'] = datax
     f['labels'] = datay
     f.close()
@@ -206,16 +207,19 @@ def loadWebfaceRawData(filename):
 if __name__ == '__main__':
 
     #modelName = "VGGface"
-    #modelName = "openface"
+    modelName = "openface"
     # modelName = "lightCNN"
     # modelName = "facenet"
 
+
     # 生成某种模型的特征向量集
-    #createWebfaceVec(modelName)
+    #createWebfaceVec(modelName, '/disk1/zhangxu_new/webface_vec_'+modelName+'_v2.h5')
 
     # 加载某种模型的特征向量集
-    #loadWebfaceVec('/disk1/zhangxu_new/webface_vec_'+modelName+'.h5')
+    #loadWebfaceVec('/disk1/zhangxu_new/webface_vec_'+modelName+'_v2.h5')
 
+
+    # 生成webface数据集的pair对
     # pairsFileName = '/disk1/zhangxu_new/webface_pairs_gray_v1.h5'
     # #
     # createPairsWebface(pairsFileName)
@@ -224,8 +228,8 @@ if __name__ == '__main__':
     # print(train2.shape)
     # print(label.shape)
 
-    webfaceRawDataFile = '/disk1/zhangxu_new/webface_origin_data.h5'
-    createWebfaceRawData(imgSize=128)
+    webfaceRawDataFile = '/disk1/zhangxu_new/webface_origin_data_v2.h5'
+    createWebfaceRawData(imgSize=128, saveFilePath=webfaceRawDataFile)
     data, label = loadWebfaceRawData(webfaceRawDataFile)
     print(data.shape)
     print(label.shape)

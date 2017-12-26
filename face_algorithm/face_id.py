@@ -2,7 +2,7 @@ import openface
 import numpy as np
 import cv2
 import os
-from .detect_align import findAlignFace_dlib # 此处包内调用有问题
+from detect_align import findAlignFace_dlib # 此处包内调用有问题
 import pandas as pd
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
