@@ -69,6 +69,8 @@ class FaceRecognition(APIView):
             else:
                 #resSerializer = RecognitionResultSerializer(None, similarity, False)
                 return Response({"detail": "no result!"})
+        else:
+            return Response({"detail": "no result!"})
 
 
 class Register(APIView):

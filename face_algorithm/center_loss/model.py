@@ -12,6 +12,7 @@ from keras import backend as K
 from face_algorithm.webface import *
 import numpy as np
 from keras.datasets import mnist
+from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
 
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
@@ -35,7 +36,7 @@ class CenterLossLayer(Layer):
 
     def build(self, input_shape):
         self.centers = self.add_weight(name='centers',
-                                       shape=(100, 512),
+                                       shape=(classNum, 512),
                                        initializer='uniform',
                                        trainable=False)
         # self.counter = self.add_weight(name='counter',
@@ -90,7 +91,7 @@ class CenterLossModel():
         print(self.model.summary())
 
         #opt = optimizers.Adam(1e-2)
-        opt = optimizers.SGD(lr=1e-3, momentum=0.9)
+        opt = optimizers.SGD(lr=1e-2, momentum=0.9)
         self.model.compile(optimizer=opt,
                       loss=[losses.categorical_crossentropy, zero_loss],
                       loss_weights=[1, lamda], metrics=['accuracy'])
@@ -144,16 +145,74 @@ class CenterLossModel():
 
         return model
 
+    # 图片生成器，采用keras的工具实现
+    def createImgGenerator(self, trainFilePath, batchSize):
+
+        train_datagen = ImageDataGenerator(
+            rescale=1. / 255,
+            # featurewise_center=True,
+            shear_range=0.2,
+            zoom_range=0.2,
+            # samplewise_std_normalization=False,
+            # zca_whitening=False,
+            rotation_range=5,
+            width_shift_range=0.0,
+            height_shift_range=0.0,
+            channel_shift_range=0.0,
+            fill_mode='nearest',
+            # cval=0.,
+            # preprocessing_function=preprocessing_img,
+            # preprocessing_function=PCA_Jittering,
+            vertical_flip=False,
+            horizontal_flip=True
+        )
+
+        #test_datagen = ImageDataGenerator(rescale=1. / 255)
+
+        baseTrainGenerator = train_datagen.flow_from_directory(
+            trainFilePath,
+            target_size=(self.inputSize, self.inputSize),
+            batch_size=batchSize, shuffle=True,
+            class_mode="categorical")  # categorical返回one-hot的类别，binary返回单值
+
+        return baseTrainGenerator
+
+    # 训练数据生成器，上一个函数的wrapper，实现生成训练所需的数据格式
+    def createTrainDataenerator(self, trainFilePath, batchSize):
+
+        baseTrainGenerator = self.createImgGenerator(trainFilePath, batchSize)
+        while True:
+            datax, datay = baseTrainGenerator.next()
+            dummy = np.zeros((datax.shape[0], 1))
+            yield [datax, datay], [datay, dummy]
+
     def train(self, trainx, trainy, epoch, batchSize):
+
         dummy1 = np.zeros((trainx.shape[0], 1))
 
         self.model.fit([trainx, trainy], [trainy, dummy1], epochs=epoch,
                        batch_size=batchSize)
 
+    # 在线生成数据并做数据增强后训练
+    def train_online(self, trainRootDir, steps_per_epoch, epoch, batchSize):
+
+        self.trainGen = self.createTrainDataenerator(trainRootDir, batchSize)
+        # adjustLR = ReduceLROnPlateau(monitor='loss', factor=0.5, patience=2, verbose=0, mode='auto',
+        #                              epsilon=0.001, cooldown=0, min_lr=5e-6)
+        # early_stopping = EarlyStopping(monitor='val_loss', patience=3)
+        self.model.fit_generator(self.trainGen, steps_per_epoch=steps_per_epoch, epochs=epoch,
+                                 # validation_data=validation_generator,
+                                 # validation_steps=10000 // batchSize,
+                                 verbose=1,
+                                 #callbacks=[adjustLR]
+                                 )
+
+    # 预测分类结果
     def inference(self, test):
         res = self.model.predict(test)
         return res
 
+    # 中间层预测出特征向量
     def getRepVec(self, test, trainy):
         dummy2 = np.zeros((trainy.shape[0], self.classNum))
         base_model = self.model
@@ -161,6 +220,7 @@ class CenterLossModel():
         rep = model.predict([test, dummy2])
         return rep
 
+    #保存模型
     def saveModel(self, modelPath):
         self.model.save_weights(modelPath)
 
@@ -168,15 +228,19 @@ class CenterLossModel():
 
 if __name__ == '__main__':
 
-    webfaceRawDataFile = '/disk1/zhangxu_new/webface_origin_data_v3.h5'
-    modelPath = "../models/center_loss_cnn.h5"
-    x_train, y_train = loadWebfaceRawData(webfaceRawDataFile)
-    y_train_onehot = to_categorical(y_train)
-
-    x_train = (x_train-127.5)/128.0
-
-    #centerLossModel = CenterLossModel(inputSize=128, classNum=100, dim=512, lamda=0.003)
-    centerLossModel = CenterLossModel(inputSize=128, classNum=100, dim=512, lamda=0.003, load=True, loadModelPath=modelPath)
-    centerLossModel.train(x_train, y_train_onehot, epoch=40, batchSize=256)
+    webfaceRawDataFile = '/disk1/zhangxu_new/webface_origin_data_v2.h5'
+    webfaceRootDir = "/disk1/zhangxu_new/CASIA-WebFace/"
+    modelPath = "../models/center_loss_cnn_v2.h5"
+    # x_train, y_train = loadWebfaceRawData(webfaceRawDataFile)
+    # y_train_onehot = to_categorical(y_train)
+    # classNum = y_train_onehot.shape[1]
+    # print("class num:", classNum)
+    #
+    # x_train = (x_train-127.5)/128.0
+    classNum = 10575
+    centerLossModel = CenterLossModel(inputSize=128, classNum=classNum, dim=512, lamda=0.001)
+    centerLossModel.train_online(webfaceRootDir, steps_per_epoch=100, epoch=10, batchSize=256)
+    #centerLossModel = CenterLossModel(inputSize=128, classNum=classNum, dim=512, lamda=0.003, load=True, loadModelPath=modelPath)
+    #centerLossModel.train(x_train, y_train_onehot, epoch=10, batchSize=512)
     centerLossModel.saveModel(modelPath)
 

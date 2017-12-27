@@ -4,10 +4,11 @@ webface_pairs.h5 128*128*3图像 align
 webface_pairs_v2.h5 128*128*3图像 align 正负样本对每人5张
 webface_pairs_v3.h5 224*224*3图像 align 正负样本对每人5张，用于vggface的saimse-cnn训练
 webface_vec_openface.h5 openface在webface数据集上的特征向量，用于训练joint-bayes
+webface_vec_openface_v2.h5 5000人，全部图片，openface在webface数据集上的特征向量，(247485, 128)
 webface_vec_VGGface.h5 vggface在webface数据集上的特征向量，用于训练joint-bayes
 lfw_pairs.h5 128*128*3图像，align，用于测试
 webface_origin_data.h5 1000人，align，每人5张图片
-webface_origin_data_v2.h5 5000人，align 每人15张图片
+webface_origin_data_v2.h5 5000人，align 每人全部图片，(247485, 128, 128, 3)
 webface_origin_data_v2.h5 100人，align 每人全部图片
 
 

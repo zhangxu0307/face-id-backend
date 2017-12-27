@@ -31,10 +31,10 @@ def lfw_test(lfwPosVecPath, lfwNegVecPath, modelPath, threshold=-10):
 
     acc = 0
 
-    # with open(modelPath+"A.pkl", "rb") as f:
-    #     A = pickle.load(f)
-    # with open(modelPath+"G.pkl", "rb") as f:
-    #     G = pickle.load(f)
+    with open(modelPath+"A.pkl", "rb") as f:
+        A = pickle.load(f)
+    with open(modelPath+"G.pkl", "rb") as f:
+        G = pickle.load(f)
 
     lfwPos_file = open(lfwPosVecPath, 'rb')
     lfwPosPairs = pickle.load(lfwPos_file)
@@ -86,22 +86,22 @@ def plotJointBayesScore(posScorFilePath, negScorFilePath):
     pos = pd.Series(posScore)
     neg = pd.Series(negScore)
 
-    # hist1 = pos.hist()
-    # fig1 = hist1.get_figure()
-    # fig1.savefig('./data/joint_bayes_pos_score.jpg')
+    hist1 = pos.hist()
+    fig1 = hist1.get_figure()
+    fig1.savefig('./data/joint_bayes_pos_score.jpg')
 
-    hist2 = neg.hist()
-    fig2 = hist2.get_figure()
-    fig2.savefig('./data/joint_bayes_neg_score.jpg')
+    # hist2 = neg.hist()
+    # fig2 = hist2.get_figure()
+    # fig2.savefig('./data/joint_bayes_neg_score.jpg')
 
 
 if __name__ == "__main__":
 
-    trainFilePath = "/disk1/zhangxu_new/webface_vec_openface.h5"
-    #modelPath = "./models/"
+    trainFilePath = "/disk1/zhangxu_new/webface_vec_openface_v2.h5"
+    modelPath = "./models/"
     lfwPosVecPath = './data/lfw_pos_openface.pkl'
     lfwNegVecPath = './data/lfw_neg_openface.pkl'
 
-    # jointBayesTrain(trainFilePath, modelPath)
-    lfw_test(lfwPosVecPath, lfwNegVecPath, modelPath)
-    #plotJointBayesScore(lfwPosVecPath, lfwNegVecPath)
+    #jointBayesTrain(trainFilePath, modelPath)
+    #lfw_test(lfwPosVecPath, lfwNegVecPath, modelPath)
+    plotJointBayesScore(lfwPosVecPath, lfwNegVecPath)
