@@ -20,6 +20,7 @@ def getRep_openface(rgbImg):
     alignedFace = findAlignFace_dlib(rgbImg, 96)
 
     rep = net.forward(alignedFace)
+
     return rep
 
 if __name__ == '__main__':

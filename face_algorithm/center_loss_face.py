@@ -59,9 +59,11 @@ def runLFW(model, trainLabel, imgSize):
 if __name__ == '__main__':
 
     imgSize = 128
+    classNum = 10575
     webfaceRawDataFile = '/disk1/zhangxu_new/webface_origin_data.h5'
-    modelPath = "./models/center_loss_cnn.h5"
+    modelPath = "./models/center_loss_cnn_v2.h5"
     data, label = loadWebfaceRawData(webfaceRawDataFile)
-    model = CenterLossModel(imgSize, classNum=100, dim=512, lamda=0.003, load=True, loadModelPath=modelPath)
+    model = CenterLossModel(inputSize=128, classNum=classNum, dim=512, lamda=0.001, load=True,
+                                      loadModelPath=modelPath)
     runLFW(model, label, imgSize)
 

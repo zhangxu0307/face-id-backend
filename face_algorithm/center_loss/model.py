@@ -16,7 +16,7 @@ from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_a
 
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-
+classNum = 10575
 ### prelu
 
 def prelu(x, name='default'):
@@ -90,8 +90,8 @@ class CenterLossModel():
             self.model.load_weights(loadModelPath)
         print(self.model.summary())
 
-        #opt = optimizers.Adam(1e-2)
-        opt = optimizers.SGD(lr=1e-2, momentum=0.9)
+        opt = optimizers.Adam(1e-3)
+        #opt = optimizers.SGD(lr=1e-2, momentum=0.9)
         self.model.compile(optimizer=opt,
                       loss=[losses.categorical_crossentropy, zero_loss],
                       loss_weights=[1, lamda], metrics=['accuracy'])
@@ -112,6 +112,7 @@ class CenterLossModel():
         #     x)
         # x = prelu(x)
         x = MaxPool2D(pool_size=(2, 2), strides=(2, 2), padding='valid')(x)
+        x = BatchNormalization()(x)
 
         #第二层
         x = Conv2D(filters=128, kernel_size=(3, 3), strides=(1, 1), padding='same', kernel_regularizer=l2(self.weight_decay))(
@@ -121,6 +122,7 @@ class CenterLossModel():
         #     x)
         # x = prelu(x)
         x = MaxPool2D(pool_size=(2, 2), strides=(2, 2), padding='valid')(x)
+        x = BatchNormalization()(x)
 
 
         #第三层
@@ -131,6 +133,7 @@ class CenterLossModel():
         #            kernel_regularizer=l2(self.weight_decay))(x)
         # x = prelu(x)
         x = MaxPool2D(pool_size=(2, 2), strides=(2, 2), padding='valid')(x)
+        x = BatchNormalization()(x)
         #
 
         # 展开
@@ -237,10 +240,12 @@ if __name__ == '__main__':
     # print("class num:", classNum)
     #
     # x_train = (x_train-127.5)/128.0
-    classNum = 10575
+
+
+
     centerLossModel = CenterLossModel(inputSize=128, classNum=classNum, dim=512, lamda=0.001)
-    centerLossModel.train_online(webfaceRootDir, steps_per_epoch=100, epoch=10, batchSize=256)
-    #centerLossModel = CenterLossModel(inputSize=128, classNum=classNum, dim=512, lamda=0.003, load=True, loadModelPath=modelPath)
+    #centerLossModel = CenterLossModel(inputSize=128, classNum=classNum, dim=512, lamda=0.001, load=True, loadModelPath=modelPath)
     #centerLossModel.train(x_train, y_train_onehot, epoch=10, batchSize=512)
+    centerLossModel.train_online(webfaceRootDir, steps_per_epoch=100, epoch=10, batchSize=256)
     centerLossModel.saveModel(modelPath)
 

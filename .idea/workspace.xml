@@ -15,14 +15,14 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/face_id_backend$real_time_face_recognition.coverage" NAME="real_time_face_recognition Coverage Results" MODIFIED="1512980535190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm/facenet/contributed" />
     <SUITE FILE_PATH="coverage/face_id_backend$Nosetests_in_test_mnist_py.coverage" NAME="Nosetests in test_mnist.py Coverage Results" MODIFIED="1514270204411" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm/center_loss" />
-    <SUITE FILE_PATH="coverage/face_id_backend$model__1_.coverage" NAME="model (1) Coverage Results" MODIFIED="1514343599256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm/center_loss" />
-    <SUITE FILE_PATH="coverage/face_id_backend$joint_bayes_face.coverage" NAME="joint_bayes_face Coverage Results" MODIFIED="1514336073883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm" />
+    <SUITE FILE_PATH="coverage/face_id_backend$model__1_.coverage" NAME="model (1) Coverage Results" MODIFIED="1514443901540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm/center_loss" />
+    <SUITE FILE_PATH="coverage/face_id_backend$joint_bayes_face.coverage" NAME="joint_bayes_face Coverage Results" MODIFIED="1514443908369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm" />
     <SUITE FILE_PATH="coverage/face_id_backend$lfw.coverage" NAME="lfw Coverage Results" MODIFIED="1513734279074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm" />
     <SUITE FILE_PATH="coverage/face_id_backend$face_id.coverage" NAME="face_id Coverage Results" MODIFIED="1513393150482" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm" />
     <SUITE FILE_PATH="coverage/face_id_backend$siam_CNN_face.coverage" NAME="siam_CNN_face Coverage Results" MODIFIED="1514186703371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm" />
-    <SUITE FILE_PATH="coverage/face_id_backend$center_loss_face.coverage" NAME="center_loss_face Coverage Results" MODIFIED="1514293122416" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm" />
+    <SUITE FILE_PATH="coverage/face_id_backend$center_loss_face.coverage" NAME="center_loss_face Coverage Results" MODIFIED="1514429814818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm" />
     <SUITE FILE_PATH="coverage/face_id_backend$webface.coverage" NAME="webface Coverage Results" MODIFIED="1514291227337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm" />
-    <SUITE FILE_PATH="coverage/face_id_backend$vgg_face.coverage" NAME="vgg_face Coverage Results" MODIFIED="1513427692045" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm" />
+    <SUITE FILE_PATH="coverage/face_id_backend$vgg_face.coverage" NAME="vgg_face Coverage Results" MODIFIED="1514446610724" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm" />
     <SUITE FILE_PATH="coverage/face_id_backend$real_time_face_recognition__1_.coverage" NAME="real_time_face_recognition (1) Coverage Results" MODIFIED="1512980904470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm/facenet/src" />
     <SUITE FILE_PATH="coverage/face_id_backend$facenet_tf_mtcnn.coverage" NAME="facenet_tf_mtcnn Coverage Results" MODIFIED="1513068268705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm" />
     <SUITE FILE_PATH="coverage/face_id_backend$facenet_tf.coverage" NAME="facenet_tf Coverage Results" MODIFIED="1513414654019" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/face_algorithm" />
@@ -57,8 +57,18 @@
       <file leaf-file-name="joint_bayes_face.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/face_algorithm/joint_bayes_face.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="29" column="66" lean-forward="false" selection-start-line="29" selection-start-column="66" selection-end-line="29" selection-end-column="66" />
+            <state relative-caret-position="-325">
+              <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="siam_CNN_face.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/face_algorithm/siam_CNN_face.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="325">
+              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -67,18 +77,18 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/face_recognition/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="94" column="38" lean-forward="true" selection-start-line="94" selection-start-column="38" selection-end-line="94" selection-end-column="38" />
+            <state relative-caret-position="-25">
+              <caret line="45" column="31" lean-forward="false" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="webface.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/face_algorithm/webface.py">
+      <file leaf-file-name="id_utils.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/face_algorithm/id_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4173">
-              <caret line="170" column="20" lean-forward="false" selection-start-line="170" selection-start-column="20" selection-end-line="170" selection-end-column="20" />
+            <state relative-caret-position="303">
+              <caret line="19" column="36" lean-forward="true" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -86,11 +96,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="face_id.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="vgg_face.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/face_algorithm/vgg_face.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="24" column="34" lean-forward="true" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="face_id.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/face_algorithm/face_id.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="7" column="40" lean-forward="true" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+            <state relative-caret-position="-858">
+              <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -98,11 +120,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data_log" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/face_algorithm/data/data_log">
+      <file leaf-file-name="lfw.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/face_algorithm/lfw.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="10" column="66" lean-forward="true" selection-start-line="10" selection-start-column="66" selection-end-line="10" selection-end-column="66" />
+            <state relative-caret-position="5225">
+              <caret line="216" column="34" lean-forward="false" selection-start-line="216" selection-start-column="34" selection-end-line="216" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -111,50 +133,28 @@
       <file leaf-file-name="joint_bayesian.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/face_algorithm/joint_bayes/joint_bayesian.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="96" column="36" lean-forward="false" selection-start-line="96" selection-start-column="36" selection-end-line="96" selection-end-column="36" />
+            <state relative-caret-position="1075">
+              <caret line="102" column="46" lean-forward="false" selection-start-line="102" selection-start-column="46" selection-end-line="102" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="model.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/face_algorithm/center_loss/model.py">
+      <file leaf-file-name="light_cnn_tf.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/face_algorithm/light_cnn_tf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5018">
-              <caret line="201" column="72" lean-forward="false" selection-start-line="201" selection-start-column="72" selection-end-line="201" selection-end-column="72" />
-              <folding>
-                <element signature="e#1#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="my_serializers.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/face_recognition/my_serializers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1775">
-              <caret line="76" column="0" lean-forward="true" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
+            <state relative-caret-position="584">
+              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="training.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.PyCharm2017.3/system/remote_sources/-520760886/477344619/keras/engine/training.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="2146" column="0" lean-forward="false" selection-start-line="2146" selection-start-column="0" selection-end-line="2146" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="center_loss_face.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="center_loss_face.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/face_algorithm/center_loss_face.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="64" column="49" lean-forward="false" selection-start-line="64" selection-start-column="49" selection-end-line="64" selection-end-column="49" />
+            <state relative-caret-position="417">
+              <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
               </folding>
@@ -214,23 +214,23 @@
         <option value="$PROJECT_DIR$/face_algorithm/detect_align.py" />
         <option value="$PROJECT_DIR$/face_id_backend/settings.py" />
         <option value="$PROJECT_DIR$/webface.py" />
-        <option value="$PROJECT_DIR$/face_algorithm/joint_bayes/joint_bayesian.py" />
         <option value="$PROJECT_DIR$/face_algorithm/joint_bayes/common.py" />
-        <option value="$PROJECT_DIR$/face_algorithm/lfw.py" />
-        <option value="$PROJECT_DIR$/face_algorithm/id_utils.py" />
-        <option value="$PROJECT_DIR$/face_algorithm/vgg_face.py" />
         <option value="$PROJECT_DIR$/face_algorithm/siam_channel_CNN/model.py" />
         <option value="$PROJECT_DIR$/face_algorithm/siam_CNN_face.py" />
         <option value="$PROJECT_DIR$/face_algorithm/center_loss/test_mnist.py" />
         <option value="$PROJECT_DIR$/face_algorithm/center_loss/my_callbacks.py" />
         <option value="$PROJECT_DIR$/face_algorithm/center_loss/centerloss_mnist.py" />
-        <option value="$PROJECT_DIR$/face_algorithm/center_loss_face.py" />
         <option value="$PROJECT_DIR$/face_algorithm/webface.py" />
         <option value="$PROJECT_DIR$/face_algorithm/data/data_log" />
-        <option value="$PROJECT_DIR$/face_algorithm/joint_bayes_face.py" />
-        <option value="$PROJECT_DIR$/face_algorithm/face_id.py" />
-        <option value="$PROJECT_DIR$/face_recognition/views.py" />
+        <option value="$PROJECT_DIR$/face_algorithm/joint_bayes/joint_bayesian.py" />
+        <option value="$PROJECT_DIR$/face_algorithm/center_loss_face.py" />
         <option value="$PROJECT_DIR$/face_algorithm/center_loss/model.py" />
+        <option value="$PROJECT_DIR$/face_algorithm/lfw.py" />
+        <option value="$PROJECT_DIR$/face_algorithm/joint_bayes_face.py" />
+        <option value="$PROJECT_DIR$/face_algorithm/vgg_face.py" />
+        <option value="$PROJECT_DIR$/face_algorithm/face_id.py" />
+        <option value="$PROJECT_DIR$/face_algorithm/id_utils.py" />
+        <option value="$PROJECT_DIR$/face_recognition/views.py" />
       </list>
     </option>
   </component>
@@ -241,9 +241,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="434" />
-    <option name="width" value="1248" />
-    <option name="height" value="816" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1696" />
+    <option name="height" value="1026" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -271,29 +272,6 @@
               <item name="face_id_backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="face_id_backend" type="462c0819:PsiDirectoryNode" />
               <item name="face_algorithm" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="face_id_backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="face_id_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="face_algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="center_loss" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="face_id_backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="face_id_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="face_algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="face_id_backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="face_id_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="face_algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="joint_bayes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="face_id_backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="face_id_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="face_recognition" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -338,7 +316,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.model (1)">
+  <component name="RunManager" selected="Python.vgg_face">
     <configuration name="center_loss_face" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -353,25 +331,6 @@
       <module name="face_id_backend" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/face_algorithm/center_loss_face.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="centerloss_mnist" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/face_algorithm/center_loss" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="face_id_backend" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/face_algorithm/center_loss/centerloss_mnist.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -410,6 +369,25 @@
       <module name="face_id_backend" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/face_algorithm/center_loss/model.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="vgg_face" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/face_algorithm" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="face_id_backend" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/face_algorithm/vgg_face.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -691,16 +669,16 @@
       <item index="1" class="java.lang.String" itemvalue="Python.webface" />
       <item index="2" class="java.lang.String" itemvalue="Python.model (1)" />
       <item index="3" class="java.lang.String" itemvalue="Python.center_loss_face" />
-      <item index="4" class="java.lang.String" itemvalue="Python.centerloss_mnist" />
-      <item index="5" class="java.lang.String" itemvalue="Python.joint_bayes_face" />
+      <item index="4" class="java.lang.String" itemvalue="Python.joint_bayes_face" />
+      <item index="5" class="java.lang.String" itemvalue="Python.vgg_face" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.model (1)" />
+        <item index="0" class="java.lang.String" itemvalue="Python.vgg_face" />
         <item index="1" class="java.lang.String" itemvalue="Python.joint_bayes_face" />
-        <item index="2" class="java.lang.String" itemvalue="Python.center_loss_face" />
-        <item index="3" class="java.lang.String" itemvalue="Python.webface" />
-        <item index="4" class="java.lang.String" itemvalue="Python.centerloss_mnist" />
+        <item index="2" class="java.lang.String" itemvalue="Python.model (1)" />
+        <item index="3" class="java.lang.String" itemvalue="Python.center_loss_face" />
+        <item index="4" class="java.lang.String" itemvalue="Python.webface" />
       </list>
     </recent_temporary>
   </component>
@@ -743,8 +721,8 @@
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921347" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25505617" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33600917" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25505617" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33595505" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15220049" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32823962" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -951,38 +929,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/face_algorithm/id_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="21" column="61" lean-forward="false" selection-start-line="21" selection-start-column="61" selection-end-line="21" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#18#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/face_algorithm/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face_algorithm/vgg_face.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="53" column="58" lean-forward="false" selection-start-line="53" selection-start-column="58" selection-end-line="53" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#32#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face_algorithm/light_cnn_tf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="584">
-          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1011,26 +961,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/face_algorithm/siam_CNN_face.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/face_algorithm/detect_align.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25">
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face_algorithm/lfw.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="113" column="68" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="113" selection-end-column="68" />
           <folding />
         </state>
       </provider>
@@ -1067,17 +1001,7 @@
         <state relative-caret-position="3195">
           <caret line="177" column="21" lean-forward="false" selection-start-line="177" selection-start-column="21" selection-end-line="177" selection-end-column="21" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face_algorithm/center_loss_face.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="64" column="49" lean-forward="false" selection-start-line="64" selection-start-column="49" selection-end-line="64" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1087,39 +1011,15 @@
         <state relative-caret-position="4173">
           <caret line="170" column="20" lean-forward="false" selection-start-line="170" selection-start-column="20" selection-end-line="170" selection-end-column="20" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face_algorithm/joint_bayes/joint_bayesian.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="96" column="36" lean-forward="false" selection-start-line="96" selection-start-column="36" selection-end-line="96" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face_algorithm/joint_bayes_face.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="29" column="66" lean-forward="false" selection-start-line="29" selection-start-column="66" selection-end-line="29" selection-end-column="66" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/face_recognition/my_serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1775">
-          <caret line="76" column="0" lean-forward="true" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/face_recognition/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="94" column="38" lean-forward="true" selection-start-line="94" selection-start-column="38" selection-end-line="94" selection-end-column="38" />
+          <caret line="76" column="0" lean-forward="false" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1134,28 +1034,106 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/face_algorithm/data/data_log">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="66" lean-forward="true" selection-start-line="10" selection-start-column="66" selection-end-line="10" selection-end-column="66" />
+        <state relative-caret-position="275">
+          <caret line="11" column="43" lean-forward="false" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/face_algorithm/center_loss/model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5018">
-          <caret line="201" column="72" lean-forward="false" selection-start-line="201" selection-start-column="72" selection-end-line="201" selection-end-column="72" />
+        <state relative-caret-position="193">
+          <caret line="109" column="20" lean-forward="false" selection-start-line="109" selection-start-column="20" selection-end-line="109" selection-end-column="20" />
           <folding>
-            <element signature="e#1#31#0" expanded="true" />
+            <element signature="e#1#31#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/face_algorithm/joint_bayes/joint_bayesian.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1075">
+          <caret line="102" column="46" lean-forward="false" selection-start-line="102" selection-start-column="46" selection-end-line="102" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/face_algorithm/light_cnn_tf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="584">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/face_algorithm/siam_CNN_face.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/face_algorithm/vgg_face.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="24" column="34" lean-forward="true" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/face_recognition/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-25">
+          <caret line="45" column="31" lean-forward="false" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/face_algorithm/id_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="19" column="36" lean-forward="true" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/face_algorithm/joint_bayes_face.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-325">
+          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/face_algorithm/lfw.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5225">
+          <caret line="216" column="34" lean-forward="false" selection-start-line="216" selection-start-column="34" selection-end-line="216" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/face_algorithm/face_id.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="40" lean-forward="true" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+        <state relative-caret-position="-858">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/face_algorithm/center_loss_face.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="69" column="0" lean-forward="true" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
           </folding>
         </state>
       </provider>

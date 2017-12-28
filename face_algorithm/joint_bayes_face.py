@@ -14,9 +14,9 @@ from django.conf import settings
 
 modelPath = settings.BASE_DIR+"/face_algorithm/models/" # django工程路径写法
 #modelPath = "./models/"
-with open(modelPath + "A.pkl", "rb") as f:
+with open(modelPath + "A_vggface.pkl", "rb") as f:
     A = pickle.load(f)
-with open(modelPath + "G.pkl", "rb") as f:
+with open(modelPath + "G_vggface.pkl", "rb") as f:
     G = pickle.load(f)
 
 # joint bayes训练
@@ -27,13 +27,13 @@ def jointBayesTrain(trainFilePath, modelPath):
     JointBayesian_Train(trainx, trainy, modelPath)
 
 # lfw测试
-def lfw_test(lfwPosVecPath, lfwNegVecPath, modelPath, threshold=-10):
+def lfw_test(lfwPosVecPath, lfwNegVecPath, modelPath, threshold=-100):
 
     acc = 0
 
-    with open(modelPath+"A.pkl", "rb") as f:
+    with open(modelPath+"A_vggface.pkl", "rb") as f:
         A = pickle.load(f)
-    with open(modelPath+"G.pkl", "rb") as f:
+    with open(modelPath+"G_vggface.pkl", "rb") as f:
         G = pickle.load(f)
 
     lfwPos_file = open(lfwPosVecPath, 'rb')
@@ -86,21 +86,22 @@ def plotJointBayesScore(posScorFilePath, negScorFilePath):
     pos = pd.Series(posScore)
     neg = pd.Series(negScore)
 
-    hist1 = pos.hist()
-    fig1 = hist1.get_figure()
-    fig1.savefig('./data/joint_bayes_pos_score.jpg')
+    # hist1 = pos.hist()
+    # fig1 = hist1.get_figure()
+    # fig1.savefig('./data/joint_bayes_pos_score.jpg')
 
-    # hist2 = neg.hist()
-    # fig2 = hist2.get_figure()
-    # fig2.savefig('./data/joint_bayes_neg_score.jpg')
+    hist2 = neg.hist()
+    fig2 = hist2.get_figure()
+    fig2.savefig('./data/joint_bayes_neg_score.jpg')
 
 
 if __name__ == "__main__":
 
-    trainFilePath = "/disk1/zhangxu_new/webface_vec_openface_v2.h5"
+    #trainFilePath = "/disk1/zhangxu_new/webface_vec_openface_v2.h5"
+    trainFilePath = "/disk1/zhangxu_new/webface_vec_VGGface.h5"
     modelPath = "./models/"
-    lfwPosVecPath = './data/lfw_pos_openface.pkl'
-    lfwNegVecPath = './data/lfw_neg_openface.pkl'
+    lfwPosVecPath = './data/lfw_pos_VGGface.pkl'
+    lfwNegVecPath = './data/lfw_neg_VGGface.pkl'
 
     #jointBayesTrain(trainFilePath, modelPath)
     #lfw_test(lfwPosVecPath, lfwNegVecPath, modelPath)

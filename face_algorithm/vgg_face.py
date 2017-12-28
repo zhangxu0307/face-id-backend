@@ -1,19 +1,15 @@
-from keras.layers import Flatten
 from keras_vggface.vggface import VGGFace
-from keras.preprocessing import image
 import numpy as np
 from keras_vggface import utils
 import cv2
 import os
-import pandas as pd
-#gpu_memory_fraction = 0.3
-
 from face_algorithm.detect_align import findAlignFace_dlib # 使用dilib检测和对齐
 
 
 # vgg-face模型加载
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 model = VGGFace(include_top=False, model="resnet50", input_shape=(224, 224, 3), pooling='avg')
+print(model.predict(np.zeros((1, 224, 224, 3)))) # 此处必须预先预测一次，否则django调用会报错。。。
 print(model.summary())
 
 # vggface模型回去人脸表示向量
@@ -25,7 +21,6 @@ def getRep_VGGface(rgbImg, version=2):
 
     x = np.expand_dims(alignedFace, axis=0)
     x = utils.preprocess_input(x, version=version)  # or version=2
-    #model = VGGFace(include_top=False, input_shape=(224, 224, 3), pooling='avg')
     rep = model.predict(x)
     rep = np.reshape(rep, (2048,))
     return rep

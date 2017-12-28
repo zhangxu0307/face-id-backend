@@ -6,19 +6,20 @@ from .face_id import getRep_openface
 from face_algorithm.vgg_face import getRep_VGGface
 
 
+getRep = getRep_VGGface
+
 # 计算余弦相似度
 def calcCossimilarity(imgArr, candidate):
 
-    #print(candidate)
-
     candidateArr = candidate.values # 传入参数是个dataframe
     candidateArr = np.squeeze(np.array(candidateArr.tolist())) # 转化为numpy数组
-    testVec = getRep_openface(imgArr)
-    #testVec = getRep_VGGface(imgArr)
+    candidateArr = np.reshape(candidateArr, (-1, 2048))  # 防止出现一个人的情况
+    testVec = getRep(imgArr)
     scoreMat = cosine_similarity(testVec, candidateArr)[0] # 此处是个嵌套的array
     print(scoreMat)
     sortIndex = np.argsort(scoreMat)
     resultID = candidate.index[sortIndex].values[-1]
+
     return resultID, scoreMat[sortIndex[-1]], testVec, candidateArr[sortIndex[-1], :] # 顺带返回特征向量，准备二次验证
 
 # 计算欧氏距离
@@ -26,7 +27,7 @@ def calcEuclidDistance(imgArr, candidate):
     print(candidate)
     candidateArr = candidate.values  # 传入参数是个dataframe
     candidateArr = np.squeeze(np.array(candidateArr.tolist()))  # 转化为numpy数组
-    testVec = getRep_openface(imgArr)
+    testVec = getRep(imgArr)
     scoreMat = euclidean_distances(testVec, candidateArr)[0]  # 此处是个嵌套的array
     #scoreMat = np.power(scoreMat, 2)
     print(scoreMat)
@@ -37,7 +38,8 @@ def calcEuclidDistance(imgArr, candidate):
 # 向特征文件中增加特征向量
 def addFaceVec(imgArr, ID):
 
-    addVec = getRep_openface(imgArr)
+    addVec = getRep(imgArr)
+    print(addVec.shape)
     addVecSeries = pd.Series([addVec], index=[ID])
     settings.CANDIDATE = pd.concat([settings.CANDIDATE, addVecSeries], axis=0)
     print(settings.CANDIDATE)

@@ -214,14 +214,14 @@ if __name__ == '__main__':
     # plotSimliarityHist(rootPath)
 
     # lfwRoot = "./data/lfw/"
-    #createLFWFeatureVec(modelName)
+    createLFWFeatureVec(modelName)
 
     # pkl_file = open('./data/lfw_pos_'+modelName+'.pkl', 'rb')
     # data1 = pickle.load(pkl_file)
     # print(len(data1))
 
-    threshold = 0.5
-    runLFWScore(modelName, threshold)
+    # threshold = 0.5
+    # runLFWScore(modelName, threshold)
 
 
 

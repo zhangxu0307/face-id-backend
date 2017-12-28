@@ -43,8 +43,7 @@ class FaceRecognition(APIView):
         print("bdbox:", boundingbox)
         print("threshold:", threshold)
 
-        jointBayesThreshold = 30 # joint bayes的阈值，
-
+        jointBayesThreshold = 400 # joint bayes的阈值，
 
         # 召回相似度最高的人
         try:
@@ -52,6 +51,7 @@ class FaceRecognition(APIView):
             #resultId, similarity = calcEuclidDistance(imgArr, settings.CANDIDATE)
         except:
             return Response({"detail": "recognition failed!"})
+
         print("resultId:", resultId)
         print("similarity:", similarity)
         if similarity >= threshold:
@@ -85,15 +85,14 @@ class Register(APIView):
         del data["boundingbox"]
         data["imgPath"] = settings.IMAGEPATH+str(data["ID"])+".jpg"
         try:
+            # 储存数据库操作
             Info.objects.create(**data)
+            # 生成图片操作
+            cv2.imwrite(data["imgPath"], imgArr)
+            # 生成特征向量并存储
+            addFaceVec(imgArr, data["ID"])
         except:
-           return Response({"detail": "Database Info saved Error!"})
-
-        cv2.imwrite(data["imgPath"], imgArr)
-
-        # 生成特征向量并存储
-        addFaceVec(imgArr, data["ID"])
-
+            return Response({"detail": "Database Info saved Error!"})
         return Response({"detail": "new face has been saved!"})
 
 class DeleteFace(APIView):
