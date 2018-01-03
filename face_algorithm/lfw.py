@@ -1,4 +1,4 @@
-from sphere_face_pt import getRep_SphereFace # 需要率先import，否则会core dumped
+from face_algorithm.sphere_face_pt import getRep_SphereFace # 需要率先import，否则会core dumped
 import cv2
 import matplotlib
 matplotlib.use('Agg')
@@ -212,9 +212,9 @@ if __name__ == '__main__':
     #modelName = "lightCNN"
     #modelName = "facenet"
     modelName = "sphere_face"
-    #runLFW(modelName)
+    runLFW(modelName)
 
-    plotSimliarityHist(modelName)
+    #plotSimliarityHist(modelName)
 
     # lfwRoot = "./data/lfw/"
     #createLFWFeatureVec(modelName)

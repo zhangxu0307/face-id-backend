@@ -6,9 +6,9 @@ import numpy as np
 import time
 from  face_algorithm.MTCNN_keras.MTCNN import create_Kao_Onet, create_Kao_Rnet, create_Kao_Pnet
 
-Pnet = create_Kao_Pnet('/home/zhangxu/python_project/face_id_backend/face_algorithm/models/12net.h5')
-Rnet = create_Kao_Rnet('/home/zhangxu/python_project/face_id_backend/face_algorithm/models/24net.h5')
-Onet = create_Kao_Onet('/home/zhangxu/python_project/face_id_backend/face_algorithm/models/48net.h5')  # will not work. caffe and TF incompatible
+Pnet = create_Kao_Pnet('./models/mtcnn_keras/12net.h5')
+Rnet = create_Kao_Rnet('./models/mtcnn_keras/24net.h5')
+Onet = create_Kao_Onet('./models/mtcnn_keras/48net.h5')  # will not work. caffe and TF incompatible
 
 def detectFace(img, threshold):
 

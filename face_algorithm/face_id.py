@@ -1,7 +1,8 @@
+# torch由于权限问题，目前只支持在命令行调用，不能使用pycharm IDE上直接运行
 import openface
 import numpy as np
 import cv2
-from face_algorithm.detect_align import findAlignFace_dlib # 此处包内调用有问题
+from face_algorithm.detect_align import findAlignFace_dlib # 此处命令行调用需要去掉face_algorithm
 import os
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = "1"
@@ -10,6 +11,7 @@ import os
 fileDir = os.path.dirname(os.path.realpath(__file__))
 modelDir = os.path.join(fileDir, 'models')
 openfaceModelDir = os.path.join(modelDir, 'openface')
+
 openfaceModelPath = os.path.join(openfaceModelDir, 'nn4.small2.v1.t7')
 net = openface.TorchNeuralNet(openfaceModelPath, 96, cuda=True) # 输入大小为96*96
 
@@ -17,8 +19,6 @@ net = openface.TorchNeuralNet(openfaceModelPath, 96, cuda=True) # 输入大小�
 def getRep_openface(rgbImg):
 
     alignedFace = findAlignFace_dlib(rgbImg, 96)
-
-
     rep = net.forward(alignedFace)
 
     return rep

@@ -1,11 +1,12 @@
 import cv2
+#from face_algorithm.MTCNN_keras.mtcnn_caffe_weight import detectFace # 注意这里TensorFlow和pytorch不能兼容使用
 from face_algorithm.MTCNN_pytorch.src import detect_faces
 from PIL import Image
 
 
 # MTCNN检测face landmark点，眼睛、鼻子和嘴角5个点, keras版本
 def findLandMarks_MTCNN_keras(img):
-    from face_algorithm.MTCNN_keras.mtcnn_caffe_weight import detectFace
+
     threshold = [0.6, 0.6, 0.7]
     maxArea = 0
     landmarkList = []

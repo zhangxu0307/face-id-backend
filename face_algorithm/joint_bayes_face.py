@@ -1,108 +1,23 @@
-#coding=utf-8
-import sys
-import numpy as np
-#from joint_bayes.common import *
-from scipy.io import loadmat
-from sklearn import metrics
-from sklearn.decomposition import PCA
-from sklearn.externals import joblib
 from face_algorithm.joint_bayes.joint_bayesian import *
-from face_algorithm.webface import loadWebfaceVec
 import pickle
-import pandas as pd
 from django.conf import settings
+import os
 
-modelPath = settings.BASE_DIR+"/face_algorithm/models/" # django工程路径写法
-#modelPath = "./models/"
-with open(modelPath + "A_vggface.pkl", "rb") as f:
+# 加载joint bayes模型参数
+vecName = "VGGface" # joint bayes 支持的特征向量
+modelPath = os.path.join(settings.BASE_DIR+"/face_algorithm/models/joint_bayes", vecName) # django工程路径写法
+A_path = os.path.join(modelPath, "A.pkl")
+G_path = os.path.join(modelPath, "G.pkl")
+with open(A_path, "rb") as f:
     A = pickle.load(f)
-with open(modelPath + "G_vggface.pkl", "rb") as f:
+with open(G_path, "rb") as f:
     G = pickle.load(f)
 
-# joint bayes训练
-def jointBayesTrain(trainFilePath, modelPath):
-
-    trainx, trainy = loadWebfaceVec(trainFilePath)
-
-    JointBayesian_Train(trainx, trainy, modelPath)
-
-# lfw测试
-def lfw_test(lfwPosVecPath, lfwNegVecPath, modelPath, threshold=-100):
-
-    acc = 0
-
-    with open(modelPath+"A_vggface.pkl", "rb") as f:
-        A = pickle.load(f)
-    with open(modelPath+"G_vggface.pkl", "rb") as f:
-        G = pickle.load(f)
-
-    lfwPos_file = open(lfwPosVecPath, 'rb')
-    lfwPosPairs = pickle.load(lfwPos_file)
-    print("lfw pos pairs num:", len(lfwPosPairs))
-
-    posScore = []
-    negScore = []
-
-    for pair in lfwPosPairs:
-        x1 = pair[0]
-        x2 = pair[1]
-        score = Verify(A, G, x1, x2)
-        print(score)
-        if score > threshold:
-            acc += 1
-        posScore.append(score)
-
-    print("_____________________________________")
-
-    lfwNeg_file = open(lfwNegVecPath, 'rb')
-    lfwNegPairs = pickle.load(lfwNeg_file)
-    print("lfw neg pairs num:", len(lfwNegPairs))
-
-    for pair in lfwNegPairs:
-        x1 = pair[0]
-        x2 = pair[1]
-        score = Verify(A, G, x1, x2)
-        print(score)
-        if score <= threshold:
-            acc += 1
-        negScore.append(score)
-
-    posScoreFile = open('./data/pos_score_file.pkl', 'wb')
-    pickle.dump(posScore, posScoreFile)
-    negScoreFile = open('./data/neg_score_file.pkl', 'wb')
-    pickle.dump(negScore, negScoreFile)
-    print("lfw acc:", acc/(len(lfwPosPairs)+len(lfwNegPairs)))
-    print("joint bayes score save finished!")
-
-# 绘制joint bayes得分分布直方图
-def plotJointBayesScore(posScorFilePath, negScorFilePath):
-
-    posScoreFile = open('./data/pos_score_file.pkl', 'rb')
-    posScore = pickle.load(posScoreFile)
-
-    negScoreFile = open('./data/neg_score_file.pkl', 'rb')
-    negScore = pickle.load(negScoreFile)
-
-    pos = pd.Series(posScore)
-    neg = pd.Series(negScore)
-
-    hist1 = pos.hist()
-    fig1 = hist1.get_figure()
-    fig1.savefig('./data/joint_bayes_pos_score.jpg')
-
-    hist2 = neg.hist()
-    fig2 = hist2.get_figure()
-    fig2.savefig('./data/joint_bayes_neg_score.jpg')
+def jointBayesVerify(v1, v2):
+    jointBayesScore = Verify(A, G, v1, v2)
+    return jointBayesScore
 
 
 if __name__ == "__main__":
 
-    #trainFilePath = "/disk1/zhangxu_new/webface_vec_openface_v2.h5"
-    trainFilePath = "/disk1/zhangxu_new/webface_vec_VGGface.h5"
-    modelPath = "./models/"
-    lfwPosVecPath = './data/lfw_pos_VGGface.pkl'
-    lfwNegVecPath = './data/lfw_neg_VGGface.pkl'
-
-    #jointBayesTrain(trainFilePath, modelPath)
-    #lfw_test(lfwPosVecPath, lfwNegVecPath, modelPath)
-    plotJointBayesScore(lfwPosVecPath, lfwNegVecPath)
+    pass

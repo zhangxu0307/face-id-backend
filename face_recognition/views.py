@@ -19,8 +19,9 @@ from .my_serializers import RecognitionResultSerializer, RegisterSerializer, Rec
 from .models import Info
 import os
 
-from face_algorithm.joint_bayes.joint_bayesian import Verify
-from face_algorithm.joint_bayes_face import A, G
+# from face_algorithm.joint_bayes.joint_bayesian import Verify
+# from face_algorithm.joint_bayes_face import A, G
+from face_algorithm.joint_bayes_face import jointBayesVerify
 # Create your views here.
 
 
@@ -62,7 +63,7 @@ class FaceRecognition(APIView):
             resSerializer = RecognitionResultSerializer(resImgPath, ID, name, similarity, True)
 
             # 使用joint bayes进行二次验证
-            jointBayesScore = Verify(A, G, v1, v2)
+            jointBayesScore = jointBayesVerify(v1, v2)
             print(jointBayesScore)
             if (jointBayesScore > jointBayesThreshold):
                 return Response(resSerializer.valid_data)

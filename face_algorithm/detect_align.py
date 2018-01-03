@@ -4,16 +4,17 @@ import cv2
 import os
 import dlib
 
-# openface模型及参数加载
+# openface\dlib模型路径
 fileDir = os.path.dirname(os.path.realpath(__file__))
 modelDir = os.path.join(fileDir, 'models')
-
 dlibModelDir = os.path.join(modelDir, 'dlib')
+
+# 68 landmark模型参数加载
 dlibModelPath = os.path.join(dlibModelDir, "shape_predictor_68_face_landmarks.dat") # 68特征点
 align = openface.AlignDlib(dlibModelPath)
 
-# dlib模型及参数加载
-predictor_path = "./models/dlib/shape_predictor_5_face_landmarks.dat" # 5特征点
+# 5 landmark模型参数加载
+predictor_path = os.path.join(dlibModelDir, 'shape_predictor_5_face_landmarks.dat') # 5特征点
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(predictor_path)
 
@@ -22,8 +23,6 @@ def findAlignFace_dlib(rgbImg, imgDim):
 
     if rgbImg is None:
         raise Exception("Unable to load image")
-
-    #rgbImg = cv2.cvtColor(rgbImg, cv2.COLOR_BGR2RGB) # 转换RGB
 
     bb = align.getLargestFaceBoundingBox(rgbImg)
     if bb is None:
@@ -36,7 +35,7 @@ def findAlignFace_dlib(rgbImg, imgDim):
 
     return alignedFace
 
-# 检测landmark点，dlib-5-landmark为眼角4点加鼻子1点
+# dlib检测landmark点，dlib-5-landmark为眼角4点加鼻子1点
 def findLandMarks_dlib(img):
 
     landmarksList = []

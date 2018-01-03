@@ -2,11 +2,11 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances
 from django.conf import settings
-from .face_id import getRep_openface
+from face_algorithm.face_id import getRep_openface
 from face_algorithm.vgg_face import getRep_VGGface
 
-
-getRep = getRep_VGGface
+getRep = getRep_VGGface # 特征向量提取算法选择
+#getRep = getRep_openface
 
 # 计算余弦相似度
 def calcCossimilarity(imgArr, candidate):

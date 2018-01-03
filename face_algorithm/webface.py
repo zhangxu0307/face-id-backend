@@ -228,6 +228,7 @@ if __name__ == '__main__':
     # print(train2.shape)
     # print(label.shape)
 
+    # 生成webface原始数据到h5文件
     webfaceRawDataFile = '/disk1/zhangxu_new/webface_origin_data_v4.h5'
     createWebfaceRawData(imgSize=128, saveFilePath=webfaceRawDataFile)
     data, label = loadWebfaceRawData(webfaceRawDataFile)

@@ -94,14 +94,14 @@ def JointBayesian_Train(trainingset, label, fold = "./"):
             F = np.linalg.pinv(Sw)
             G = -np.dot(np.dot(np.linalg.pinv(2*Su+Sw),Su), F)
             A = np.linalg.pinv(Su+Sw)-(F+G)
-            data_to_pkl(G, fold + "G_vggface.pkl")
-            data_to_pkl(A, fold + "A_vggface.pkl")
+            data_to_pkl(G, fold + "G.pkl")
+            data_to_pkl(A, fold + "A.pkl")
 
     F = np.linalg.pinv(Sw)
     G = -np.dot(np.dot(np.linalg.pinv(2*Su+Sw),Su), F)
     A = np.linalg.pinv(Su+Sw) - (F+G)
-    data_to_pkl(G, fold + "G_con_vggface.pkl")
-    data_to_pkl(A, fold + "A_con_vggface.pkl")
+    data_to_pkl(G, fold + "G_con.pkl")
+    data_to_pkl(A, fold + "A_con.pkl")
 
     return A, G
 

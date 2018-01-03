@@ -5,9 +5,9 @@ import cv2
 import os
 from face_algorithm.detect_align import findAlignFace_dlib # 使用dilib检测和对齐
 
+#os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 # vgg-face模型加载
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 model = VGGFace(include_top=False, model="resnet50", input_shape=(224, 224, 3), pooling='avg')
 print(model.predict(np.zeros((1, 224, 224, 3)))) # 此处必须预先预测一次，否则django调用会报错。。。
 print(model.summary())
