@@ -2,24 +2,28 @@ import openface
 import numpy as np
 import cv2
 import os
+import dlib
 
-
-# openface参数及模型加载
+# openface模型及参数加载
 fileDir = os.path.dirname(os.path.realpath(__file__))
 modelDir = os.path.join(fileDir, 'models')
+
 dlibModelDir = os.path.join(modelDir, 'dlib')
-
-dlibModelPath = os.path.join(dlibModelDir, "shape_predictor_68_face_landmarks.dat")
-
+dlibModelPath = os.path.join(dlibModelDir, "shape_predictor_68_face_landmarks.dat") # 68特征点
 align = openface.AlignDlib(dlibModelPath)
 
-# 使用openface中的dlib工具检测并对齐人脸
+# dlib模型及参数加载
+predictor_path = "./models/dlib/shape_predictor_5_face_landmarks.dat" # 5特征点
+detector = dlib.get_frontal_face_detector()
+predictor = dlib.shape_predictor(predictor_path)
+
+# 使用openface中的dlib工具检测并对齐人脸，主要对齐模型
 def findAlignFace_dlib(rgbImg, imgDim):
 
     if rgbImg is None:
         raise Exception("Unable to load image")
 
-    rgbImg = cv2.cvtColor(rgbImg, cv2.COLOR_BGR2RGB) # 转换RGB
+    #rgbImg = cv2.cvtColor(rgbImg, cv2.COLOR_BGR2RGB) # 转换RGB
 
     bb = align.getLargestFaceBoundingBox(rgbImg)
     if bb is None:
@@ -32,49 +36,32 @@ def findAlignFace_dlib(rgbImg, imgDim):
 
     return alignedFace
 
+# 检测landmark点，dlib-5-landmark为眼角4点加鼻子1点
+def findLandMarks_dlib(img):
 
-# class Detection:
-#
-#     # face detection parameters
-#     minsize = 20  # minimum size of face
-#     threshold = [0.6, 0.7, 0.7]  # three steps's threshold
-#     factor = 0.709  # scale factor
-#
-#     def __init__(self, face_crop_size=160, face_crop_margin=32):
-#         self.pnet, self.rnet, self.onet = self._setup_mtcnn()
-#         self.face_crop_size = face_crop_size
-#         self.face_crop_margin = face_crop_margin
-#
-#     def _setup_mtcnn(self):
-#         with tf.Graph().as_default():
-#             gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=gpu_memory_fraction)
-#             sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options, log_device_placement=False))
-#             with sess.as_default():
-#                 return align.detect_face.create_mtcnn(sess, None)
-#
-#     def find_largest_faces(self, image):
-#         #faces = []
-#
-#         bounding_boxes, _ = align.detect_face.detect_face(image, self.minsize,
-#                                                           self.pnet, self.rnet, self.onet,
-#                                                           self.threshold, self.factor)
-#         areaMax = 0
-#         for bb in bounding_boxes:
-#
-#             bounding_box = np.zeros(4, dtype=np.int32)
-#
-#             img_size = np.asarray(image.shape)[0:2]
-#             bounding_box[0] = np.maximum(bb[0] - self.face_crop_margin / 2, 0)
-#             bounding_box[1] = np.maximum(bb[1] - self.face_crop_margin / 2, 0)
-#             bounding_box[2] = np.minimum(bb[2] + self.face_crop_margin / 2, img_size[1])
-#             bounding_box[3] = np.minimum(bb[3] + self.face_crop_margin / 2, img_size[0])
-#             area = np.abs(bounding_box[3]-bounding_box[1])*np.abs(bounding_box[2]-bounding_box[0])
-#             print(area)
-#             if area > areaMax:
-#                 areaMax = area
-#                 cropped = image[bounding_box[1]:bounding_box[3], bounding_box[0]:bounding_box[2], :]
-#                 faceimg = misc.imresize(cropped, (self.face_crop_size, self.face_crop_size), interp='bilinear')
-#
-# #            faces.append(bounding_box)
-#
-#         return faceimg
+    landmarksList = []
+    dets = detector(img, 1)
+    print("Number of faces detected: {}".format(len(dets)))
+    for k, d in enumerate(dets):
+        print("Detection {}: Left: {} Top: {} Right: {} Bottom: {}".format(
+            k, d.left(), d.top(), d.right(), d.bottom()))
+        # Get the landmarks/parts for the face in box d.
+        shape = predictor(img, d)
+        print("Part 0: {}, Part 1: {}, Part 2: {}, Part 3: {}, Part 4: {},".format(shape.part(0),
+                                                  shape.part(1), shape.part(2), shape.part(3), shape.part(4)))
+        for i in range(5):
+            landmarksList.append(int(shape.part(i).x))
+            landmarksList.append(int(shape.part(i).y))
+
+    return landmarksList
+
+
+if __name__ == '__main__':
+
+    f = "./data/lfw/Aaron_Eckhart/Aaron_Eckhart_0001.jpg"
+    img = cv2.imread(f)
+    landMarkList = findLandMarks_dlib(img)
+    print(landMarkList)
+
+
+

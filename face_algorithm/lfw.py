@@ -1,17 +1,14 @@
-import numpy as np
-import pandas as pd
+from sphere_face_pt import getRep_SphereFace # 需要率先import，否则会core dumped
 import cv2
-# #from face_id import getRep_openface
-#from vgg_face import getRep_VGGface
-# from light_cnn_tf import getRep_lightCNN
-# #from facenet_tf import getRep_facenet_tf
 import matplotlib
 matplotlib.use('Agg')
+import numpy as np
+import pandas as pd
+
 import os
 from matplotlib.pyplot import plot, savefig
 from glob import glob
 import pickle
-
 
 # 计算成对的余弦相似度
 def calcCosSimilarityPairs(rep1, rep2):
@@ -84,6 +81,9 @@ def runLFW(modelName):
     if modelName == "facenet":
         from facenet_tf import getRep_facenet_tf
         getRep = getRep_facenet_tf
+    if modelName == "sphere_face":
+
+        getRep = getRep_SphereFace
 
     posGen = getPosPairsImg()
     for img1, img2 in posGen:
@@ -114,19 +114,23 @@ def runLFW(modelName):
     negCsv.to_csv("./data/neg_score_"+modelName+".csv", index=False)
 
 # 绘制相似度分布直方图
-def plotSimliarityHist(rootPath):
+def plotSimliarityHist(modelName): # 此处仍有bug，两个直方图会有混叠现象，只能一个个绘制
 
-    datafilePath = glob(rootPath+"*.csv")
+    # 绘制负样本对得分
+    filePath = "./data/neg_score_"+modelName+".csv"
+    data = pd.read_csv(filePath)
+    print(data)
+    hist = data["0"].hist()
+    fig1 = hist.get_figure()
+    fig1.savefig('./data/neg_score_' + modelName + ".jpg")
 
-    for filePath in datafilePath[:]: # 此处存在一个bug，hist图会产生交叠现象，目前是手工一个个的产生
-        filename = filePath[7:-4]
-        print(filename)
-        data = pd.read_csv(filePath)
-        print(data)
-        hist = data["0"].hist()
-        fig = hist.get_figure()
-        fig.savefig('./data/' + filename + ".jpg")
-        break
+    # 绘制正样本对得分
+    filePath = "./data/pos_score_" + modelName + ".csv"
+    data = pd.read_csv(filePath)
+    print(data)
+    hist = data["0"].hist()
+    fig2 = hist.get_figure()
+    fig2.savefig('./data/pos_score_' + modelName + ".jpg")
 
 # 获取LFW数据中所有样本对的特征向量并保存成文件
 def createLFWFeatureVec(modelName):
@@ -203,18 +207,17 @@ def runLFWScore(modelName, threshold):
 
 if __name__ == '__main__':
 
-    modelName = "VGGface"
+    #modelName = "VGGface"
     #modelName = "openface"
     #modelName = "lightCNN"
     #modelName = "facenet"
+    modelName = "sphere_face"
     #runLFW(modelName)
 
-
-    #rootPath = "./data/"
-    # plotSimliarityHist(rootPath)
+    plotSimliarityHist(modelName)
 
     # lfwRoot = "./data/lfw/"
-    createLFWFeatureVec(modelName)
+    #createLFWFeatureVec(modelName)
 
     # pkl_file = open('./data/lfw_pos_'+modelName+'.pkl', 'rb')
     # data1 = pickle.load(pkl_file)

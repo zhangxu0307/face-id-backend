@@ -1,5 +1,4 @@
 import numpy as np
-import pandas as pd
 import h5py
 import os
 import cv2
@@ -67,7 +66,7 @@ def loadWebfaceVec(filename):
     return datax, datay
 
 
-# 使用webface数据集生成正负样本对
+# 使用webface数据集随机生成正负样本对
 def createPairsWebface(saveFileName):
 
     posNum = 2
@@ -168,17 +167,18 @@ def loadPairsWebface(filename):
 # 生成webface原始数据h5文件
 def createWebfaceRawData(imgSize, saveFilePath):
 
-    peopleNum = 5000
-    singleSubNum = 15
+    start = 0
+    peopleNum = 2500
+    singleSubNum = 20
     datax = []
     datay = []
-    dirlist = sorted(os.listdir(webfaceRoot))[:peopleNum]
+    dirlist = sorted(os.listdir(webfaceRoot))[start:start+peopleNum]
 
     for index, dir in enumerate(dirlist):
         print("%d people running..." % index)
         for root, d, files in os.walk(webfaceRoot + dir):
             print("img num:", len(files))
-            for file in files[:]:
+            for file in files[:singleSubNum]:
                 imgPath = webfaceRoot + dir + "/" + file
                 img = cv2.imread(imgPath)
                 try:
@@ -228,7 +228,7 @@ if __name__ == '__main__':
     # print(train2.shape)
     # print(label.shape)
 
-    webfaceRawDataFile = '/disk1/zhangxu_new/webface_origin_data_v2.h5'
+    webfaceRawDataFile = '/disk1/zhangxu_new/webface_origin_data_v4.h5'
     createWebfaceRawData(imgSize=128, saveFilePath=webfaceRawDataFile)
     data, label = loadWebfaceRawData(webfaceRawDataFile)
     print(data.shape)

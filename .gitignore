@@ -2,3 +2,5 @@
 *.dat
 *.h5
 *.jpg
+*.npy
+*.pth

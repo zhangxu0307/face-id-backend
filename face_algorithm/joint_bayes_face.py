@@ -86,9 +86,9 @@ def plotJointBayesScore(posScorFilePath, negScorFilePath):
     pos = pd.Series(posScore)
     neg = pd.Series(negScore)
 
-    # hist1 = pos.hist()
-    # fig1 = hist1.get_figure()
-    # fig1.savefig('./data/joint_bayes_pos_score.jpg')
+    hist1 = pos.hist()
+    fig1 = hist1.get_figure()
+    fig1.savefig('./data/joint_bayes_pos_score.jpg')
 
     hist2 = neg.hist()
     fig2 = hist2.get_figure()

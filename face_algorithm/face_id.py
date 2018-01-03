@@ -1,23 +1,23 @@
 import openface
 import numpy as np
 import cv2
-import os
 from face_algorithm.detect_align import findAlignFace_dlib # 此处包内调用有问题
-import pandas as pd
 import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+
+# os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 # openface参数及模型加载
 fileDir = os.path.dirname(os.path.realpath(__file__))
 modelDir = os.path.join(fileDir, 'models')
 openfaceModelDir = os.path.join(modelDir, 'openface')
 openfaceModelPath = os.path.join(openfaceModelDir, 'nn4.small2.v1.t7')
-net = openface.TorchNeuralNet(openfaceModelPath, 96, cuda=True)
+net = openface.TorchNeuralNet(openfaceModelPath, 96, cuda=True) # 输入大小为96*96
 
 # openface模型获取人脸表示向量
 def getRep_openface(rgbImg):
 
     alignedFace = findAlignFace_dlib(rgbImg, 96)
+
 
     rep = net.forward(alignedFace)
 
