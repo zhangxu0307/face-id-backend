@@ -76,13 +76,13 @@ def runLFW(modelName):
         from face_id import getRep_openface
         getRep = getRep_openface
     if modelName == "lightCNN":
-        from light_cnn_tf import getRep_lightCNN
-        getRep = getRep_lightCNN
+        #from light_cnn_tf import getRep_lightCNN
+        from face_algorithm.light_cnn_pytorch import gerRep_lightCNN_pytorch
+        getRep = gerRep_lightCNN_pytorch
     if modelName == "facenet":
         from facenet_tf import getRep_facenet_tf
         getRep = getRep_facenet_tf
     if modelName == "sphere_face":
-
         getRep = getRep_SphereFace
 
     posGen = getPosPairsImg()
@@ -117,12 +117,12 @@ def runLFW(modelName):
 def plotSimliarityHist(modelName): # 此处仍有bug，两个直方图会有混叠现象，只能一个个绘制
 
     # 绘制负样本对得分
-    filePath = "./data/neg_score_"+modelName+".csv"
-    data = pd.read_csv(filePath)
-    print(data)
-    hist = data["0"].hist()
-    fig1 = hist.get_figure()
-    fig1.savefig('./data/neg_score_' + modelName + ".jpg")
+    # filePath = "./data/neg_score_"+modelName+".csv"
+    # data = pd.read_csv(filePath)
+    # print(data)
+    # hist = data["0"].hist()
+    # fig1 = hist.get_figure()
+    # fig1.savefig('./data/neg_score_' + modelName + ".jpg")
 
     # 绘制正样本对得分
     filePath = "./data/pos_score_" + modelName + ".csv"
@@ -209,12 +209,12 @@ if __name__ == '__main__':
 
     #modelName = "VGGface"
     #modelName = "openface"
-    #modelName = "lightCNN"
+    modelName = "lightCNN"
     #modelName = "facenet"
-    modelName = "sphere_face"
-    runLFW(modelName)
+    #modelName = "sphere_face"
+    #runLFW(modelName)
 
-    #plotSimliarityHist(modelName)
+    plotSimliarityHist(modelName)
 
     # lfwRoot = "./data/lfw/"
     #createLFWFeatureVec(modelName)
