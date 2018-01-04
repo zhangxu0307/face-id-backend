@@ -1,28 +1,18 @@
-from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 import cv2
-#from .serializers import RecognitionResultSerializer, RegisterSerializer, RecognitionRequestSerializer
-from django.utils.six import BytesIO
-from rest_framework.parsers import JSONParser
-from django.http import HttpResponse
-import json
-import cv2
-import numpy as np
-from django.core.files.storage import get_storage_class
-from django.core.files.base import ContentFile
-from PIL import Image
-import io
 from face_algorithm.id_utils import  calcCossimilarity, addFaceVec, calcEuclidDistance, deleteFaceVec
 from django.conf import settings
 from .my_serializers import RecognitionResultSerializer, RegisterSerializer, RecognitionRequestSerializer
 from .models import Info
 import os
-
-# from face_algorithm.joint_bayes.joint_bayesian import Verify
-# from face_algorithm.joint_bayes_face import A, G
 from face_algorithm.joint_bayes_face import jointBayesVerify
-# Create your views here.
+
+# 特征向量提取算法选择
+#from face_algorithm.face_id import getRep_openface
+from face_algorithm.vgg_face import getRep_VGGface
+getRep = getRep_VGGface
+#getRep = getRep_openface
 
 
 class FaceRecognition(APIView):
@@ -48,7 +38,7 @@ class FaceRecognition(APIView):
 
         # 召回相似度最高的人
         try:
-            resultId, similarity, v1, v2 = calcCossimilarity(imgArr, settings.CANDIDATE)
+            resultId, similarity, v1, v2 = calcCossimilarity(imgArr, settings.CANDIDATE, getRep)
             #resultId, similarity = calcEuclidDistance(imgArr, settings.CANDIDATE)
         except:
             return Response({"detail": "recognition failed!"})
@@ -91,7 +81,7 @@ class Register(APIView):
             # 生成图片操作
             cv2.imwrite(data["imgPath"], imgArr)
             # 生成特征向量并存储
-            addFaceVec(imgArr, data["ID"])
+            addFaceVec(imgArr, data["ID"], getRep)
         except:
             return Response({"detail": "Database Info saved Error!"})
         return Response({"detail": "new face has been saved!"})
@@ -101,21 +91,21 @@ class DeleteFace(APIView):
     def post(self, request, format=None):
 
         deleteID = self.request.data["delete_ID"]
-        try:
-            # 获取图片路径
-            info = Info.objects.get(ID=deleteID)
-            deleteImgPath = info.imgPath
-            # 删除特征向量
-            deleteFaceVec(deleteID)
-            # 删除图片文件
-            os.remove(deleteImgPath)
-            # 删除数据库记录
-            Info.objects.get(ID=deleteID).delete()
-            return Response({"detail": "delete success!"})
+        #try:
+        # 获取图片路径
+        info = Info.objects.get(ID=deleteID)
+        deleteImgPath = info.imgPath
+        # 删除特征向量
+        deleteFaceVec(deleteID)
+        # 删除图片文件
+        os.remove(deleteImgPath)
+        # 删除数据库记录
+        Info.objects.get(ID=deleteID).delete()
+        return Response({"detail": "delete success!"})
 
-        except:
+        #except:
 
-            return Response({"detail": "delete failed!"})
+            #return Response({"detail": "delete failed!"})
 
 
 

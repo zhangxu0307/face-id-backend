@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import numpy as np
 import pandas as pd
+from face_algorithm.id_utils import loadFeatureVec
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -136,6 +137,7 @@ files = os.listdir(IMAGEPATH)
 # 如果候选集路径，就加载，没有则新生成一个dataframe
 if  os.path.exists(CANDIDATEPATH):
     CANDIDATE = pd.read_pickle(CANDIDATEPATH)
+    #CANDIDATE = loadFeatureVec(CANDIDATEPATH, format="pkl")
 else:
     CANDIDATE = pd.DataFrame()
 
