@@ -117,12 +117,12 @@ def runLFW(modelName):
 def plotSimliarityHist(modelName): # 此处仍有bug，两个直方图会有混叠现象，只能一个个绘制
 
     # 绘制负样本对得分
-    # filePath = "./data/neg_score_"+modelName+".csv"
-    # data = pd.read_csv(filePath)
-    # print(data)
-    # hist = data["0"].hist()
-    # fig1 = hist.get_figure()
-    # fig1.savefig('./data/neg_score_' + modelName + ".jpg")
+    filePath = "./data/neg_score_"+modelName+".csv"
+    data = pd.read_csv(filePath)
+    print(data)
+    hist = data["0"].hist()
+    fig1 = hist.get_figure()
+    fig1.savefig('./data/neg_score_' + modelName + ".jpg")
 
     # 绘制正样本对得分
     filePath = "./data/pos_score_" + modelName + ".csv"

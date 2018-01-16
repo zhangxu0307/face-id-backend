@@ -41,9 +41,7 @@ def l2_dist_output_shape(shapes):
 
 # 对比loss
 def contrastive_loss(y, d):
-    """ Contrastive loss from Hadsell-et-al.'06
-        http://yann.lecun.com/exdb/publis/pdf/hadsell-chopra-lecun-06.pdf
-    """
+
     margin = 1
     return K.mean(y * K.square(d) + (1 - y) * K.square(K.maximum(margin - d, 0)))
 

@@ -136,8 +136,8 @@ files = os.listdir(IMAGEPATH)
 
 # 如果候选集路径，就加载，没有则新生成一个dataframe
 if  os.path.exists(CANDIDATEPATH):
-    CANDIDATE = pd.read_pickle(CANDIDATEPATH)
-    #CANDIDATE = loadFeatureVec(CANDIDATEPATH, format="pkl")
+    #CANDIDATE = pd.read_pickle(CANDIDATEPATH)
+    CANDIDATE = loadFeatureVec(CANDIDATEPATH, format="pkl")
 else:
     CANDIDATE = pd.DataFrame()
 

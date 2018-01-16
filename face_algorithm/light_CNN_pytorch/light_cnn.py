@@ -47,6 +47,7 @@ class resblock(nn.Module):
         out = out + res
         return out
 
+
 class network_9layers(nn.Module):
     def __init__(self, num_classes=79077):
         super(network_9layers, self).__init__()

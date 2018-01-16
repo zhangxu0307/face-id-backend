@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances
 from django.conf import settings
+import cv2
 
 
 def saveFeatureVec(dataframe, filePath, format="pkl"):
@@ -26,14 +27,28 @@ def loadFeatureVec(filePath, format="pkl"):
 # 计算余弦相似度
 def calcCossimilarity(imgArr, candidate, getRep):
 
+    import time
+    t1 = time.time()
     candidateArr = candidate.values # 传入参数是个dataframe
     candidateArr = np.squeeze(np.array(candidateArr.tolist())) # 转化为numpy数组
     candidateArr = np.reshape(candidateArr, (-1, 2048))  # 防止出现一个人的情况
+
+    t2 = time.time()
     testVec = getRep(imgArr)
+
+    t3 = time.time()
     scoreMat = cosine_similarity(testVec, candidateArr)[0] # 此处是个嵌套的array
+
+    t4 = time.time()
     print(scoreMat)
     sortIndex = np.argsort(scoreMat)
     resultID = candidate.index[sortIndex].values[-1]
+    t5 = time.time()
+
+    print("load and transfore time:", t2-t1)
+    print("get feature rep time:", t3 - t2)
+    print("calc cosine_similarity time:", t4 - t3)
+    print("sort time:", t5 - t4)
 
     return resultID, scoreMat[sortIndex[-1]], testVec, candidateArr[sortIndex[-1], :] # 顺带返回特征向量，准备二次验证
 
@@ -79,19 +94,62 @@ def transformPkl2HDF5():
     candidateVec = pd.read_pickle(candidateVecPath)
     candidateVec.to_hdf(candidateVecHDFPath, key="Gallery")
 
-
-if __name__ == '__main__':
+# 随机生成一组特征向量用于时间测试
+def createTimeTestVec(sampleNum = 10000, featureDim = 2048):
 
     import time
-    transformPkl2HDF5()
+    testDF = pd.DataFrame()
+    testDFPath1 = "../media/test_vec.pkl"
+    testDFPath2 = "../media/test_vec.h5"
+    for i in range(0, sampleNum):
+        print("%d is running..." %i)
+        featureVec = np.random.random((featureDim, ))
+        addVecSeries = pd.Series([featureVec], index=[i])
+        testDF = pd.concat([testDF, addVecSeries], axis=0)
+    print(testDF)
     t1 = time.time()
-    #candidateVec = pd.read_hdf("../media/candidate_vec.h5")
-    candidateVec = loadFeatureVec("../media/candidate_vec.h5", format="h5")
+    saveFeatureVec(testDF, testDFPath1, format="pkl")
     t2 = time.time()
-    #candidateVec = pd.read_pickle("../media/candidate_vec.pkl")
-    candidateVec = loadFeatureVec("../media/candidate_vec.pkl", format="pkl")
+    saveFeatureVec(testDF, testDFPath2, format="h5")
     t3 = time.time()
     print(t2-t1)
     print(t3-t2)
-    print(candidateVec)
+
+
+
+
+if __name__ == '__main__':
+
+    # pkl文件转化为h5文件
+    #transformPkl2HDF5()
+
+    # 随机生成测试特征向量
+    # createTimeTestVec(sampleNum=20000)
+
+    # 测试加载特征向量时间
+    import time
+    t1 = time.time()
+
+    candidateVec1 = loadFeatureVec("../media/test_vec.h5", format="h5")
+    t2 = time.time()
+
+    candidateVec2 = loadFeatureVec("../media/test_vec.pkl", format="pkl")
+    t3 = time.time()
+
+    print(t2-t1)
+    print(t3-t2)
+    print(candidateVec1)
+    print(candidateVec2)
+
+
+    # 测试计算相似度时间
+    from face_algorithm.vgg_face import getRep_VGGface
+    getRep = getRep_VGGface
+    imgArr = cv2.imread("../media/MG1633101.jpg")
+    t4 = time.time()
+    calcCossimilarity(imgArr, candidateVec1, getRep)
+    t5 = time.time()
+    print("calc cos time:", t5-t4)
+
+
 
