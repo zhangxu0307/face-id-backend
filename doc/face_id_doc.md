@@ -43,7 +43,7 @@
 1. 预加载模型
 2. getRep_XXX模型函数
 	1. 调用上述对齐模型
-	2. 深度网络前向过程，产生特征向量
+	2. 深度网络前向过程，产生特征向量，并返回
 
 #### 数据集相关 #####
 
@@ -72,3 +72,33 @@
 	    CANDIDATE = loadFeatureVec(CANDIDATEPATH, format="pkl")
 	else:
 	    CANDIDATE = pd.DataFrame()
+
+
+## API接口文档 ##
+
+- http://114.212.84.6:8888/api/recognition
+	- 功能：人脸识别 
+	- 方法：POST
+	- 参数：json，包括picture、boundingbox、threshold三个字段
+	- 返回： 人脸图像、学号、姓名、相似度
+
+- http://114.212.84.6:8888/api/register/
+	- 功能：从相机拍摄注册
+	- 方法：POST
+	- 参数：json，包括picture、ID、name等字段
+	- 返回： "detail": "new face has been saved!"
+- http://114.212.84.6:8888/api/delete/
+	- 功能：删除指定单个人的记录
+	- 方法：POST
+	- 参数：学号
+	- 返回： "detail": "delete success!"
+- http://114.212.84.6:8888/api/register_batch/
+	- 功能：从文件中批量构建人脸数据库信息
+	- 方法：POST
+	- 参数：无
+	- 返回： "detail": "all face has been saved!"
+- http://114.212.84.6:8888/api/clear/
+	- 功能：清除所有数据信息
+	- 方法：POST
+	- 参数：无
+	- 返回： "detail": "all data has been cleaned!"

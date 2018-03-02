@@ -28,13 +28,16 @@ def createWebfaceVec(modelName, saveFilePath):
     if modelName == "facenet":
         from facenet_tf import getRep_facenet_tf
         getRep = getRep_facenet_tf
+    if modelName == "sphereface":
+        from sphere_face_pt import getRep_SphereFace
+        getRep = getRep_SphereFace
 
     dirlist = sorted(os.listdir(webfaceRoot))[:peopleNum]
 
     for index, dir in enumerate(dirlist):
         print("%d people running..." %index)
         for root, d , files in os.walk(webfaceRoot+dir):
-            for file in files[:]:
+            for file in files[:singleSubNum]:
                 imgPath = webfaceRoot+dir+"/"+file
                 #print(imgPath)
                 img = cv2.imread(imgPath)
@@ -207,13 +210,14 @@ def loadWebfaceRawData(filename):
 if __name__ == '__main__':
 
     #modelName = "VGGface"
-    modelName = "openface"
+    #modelName = "openface"
     # modelName = "lightCNN"
     # modelName = "facenet"
+    modelName = "sphereface"
 
 
     # 生成某种模型的特征向量集
-    #createWebfaceVec(modelName, '/disk1/zhangxu_new/webface_vec_'+modelName+'_v2.h5')
+    createWebfaceVec(modelName, '/disk1/zhangxu_new/webface_vec_'+modelName+'.h5')
 
     # 加载某种模型的特征向量集
     #loadWebfaceVec('/disk1/zhangxu_new/webface_vec_'+modelName+'_v2.h5')
@@ -229,11 +233,11 @@ if __name__ == '__main__':
     # print(label.shape)
 
     # 生成webface原始数据到h5文件
-    webfaceRawDataFile = '/disk1/zhangxu_new/webface_origin_data_v4.h5'
-    createWebfaceRawData(imgSize=128, saveFilePath=webfaceRawDataFile)
-    data, label = loadWebfaceRawData(webfaceRawDataFile)
-    print(data.shape)
-    print(label.shape)
+    # webfaceRawDataFile = '/disk1/zhangxu_new/webface_origin_data_v4.h5'
+    # createWebfaceRawData(imgSize=128, saveFilePath=webfaceRawDataFile)
+    # data, label = loadWebfaceRawData(webfaceRawDataFile)
+    # print(data.shape)
+    # print(label.shape)
 
 
 

@@ -89,10 +89,11 @@ if __name__ == "__main__":
     # 训练用特征向量文件，目前使用webface生成
     #trainFilePath = "/disk1/zhangxu_new/webface_vec_openface_v2.h5"
     #trainFilePath = "/disk1/zhangxu_new/webface_vec_VGGface.h5"
+    trainFilePath = "/disk1/zhangxu_new/webface_vec_sphereface.h5"
 
     # 模型路径以及所用特征向量类型
     modelPath = "../models/joint_bayes/"
-    vecName = "VGGface"
+    vecName = "sphereface"
 
     # lfw对应特征向量文件
     lfwPosVecPath = '../data/lfw_pos_'+vecName+'.pkl'
@@ -102,6 +103,6 @@ if __name__ == "__main__":
     lfwPosScorePath = '../data/joint_bayes_lfw_pos_score'+vecName+'.pkl'
     lfwNegScorePath = '../data/joint_bayes_lfw_neg_score' + vecName + '.pkl'
 
-    #jointBayesTrain(trainFilePath, modelPath, vecName)
-    lfw_test(lfwPosVecPath, lfwNegVecPath, modelPath, vecName, lfwPosScorePath, lfwNegScorePath)
-    plotJointBayesScore(lfwPosScorePath, lfwNegScorePath)
+    jointBayesTrain(trainFilePath, modelPath, vecName)
+    #lfw_test(lfwPosVecPath, lfwNegVecPath, modelPath, vecName, lfwPosScorePath, lfwNegScorePath)
+    #plotJointBayesScore(lfwPosScorePath, lfwNegScorePath)
