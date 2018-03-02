@@ -14,7 +14,7 @@ from face_algorithm.vgg_face import getRep_VGGface
 getRep = getRep_VGGface
 #getRep = getRep_openface
 
-
+# 人脸识别api
 class FaceRecognition(APIView):
 
     def post(self, request, format=None):
@@ -28,13 +28,13 @@ class FaceRecognition(APIView):
         imgArr = data["picture"]
         boundingbox = data["boundingbox"]
         threshold = data["threshold"]
-        threshold = 0.8
+
+        threshold = 0.5 # 相似度阈值
+        jointBayesThreshold = 300  # joint bayes的阈值，
 
         print("img:", imgArr.shape)
         print("bdbox:", boundingbox)
         print("threshold:", threshold)
-
-        jointBayesThreshold = 400 # joint bayes的阈值，
 
         # 召回相似度最高的人
         try:
@@ -63,7 +63,7 @@ class FaceRecognition(APIView):
         else:
             return Response({"detail": "no result!"})
 
-
+# 从相机注册api
 class Register(APIView):
 
     def post(self, request, format=None):
@@ -86,6 +86,7 @@ class Register(APIView):
             return Response({"detail": "Database Info saved Error!"})
         return Response({"detail": "new face has been saved!"})
 
+# 删除记录api
 class DeleteFace(APIView):
 
     def post(self, request, format=None):
@@ -106,6 +107,60 @@ class DeleteFace(APIView):
         #except:
 
             #return Response({"detail": "delete failed!"})
+
+# 清空记录api
+class DeleteAllRecord(APIView):
+
+    def post(self, request, format=None):
+
+        # 删除所有的meida文件中的特征向量和图片
+        delList = os.listdir(settings.IMAGEPATH)
+
+        for f in delList:
+            filePath = os.path.join(settings.IMAGEPATH, f)
+            if os.path.isfile(filePath):
+                os.remove(filePath)
+
+        # 清理数据库
+        Info.objects.all().delete()
+
+        return Response({"detail": "all data has been cleaned!"})
+
+
+
+# 从文件夹中直接构建数据库信息
+class RegisterFromDir(APIView):
+
+    def post(self, request, format=None):
+
+        os.path.exists(settings.RAWFACEIMGPATH)
+        for (root, dirs, files) in os.walk(settings.RAWFACEIMGPATH):
+
+            for filename in files:
+
+                ID, name = filename.split()
+                name = name.split('.')[0]
+                print(ID, name)
+                imgPath = os.path.join(root, filename)
+
+                imgArr = cv2.imread(imgPath)
+
+                data = {}
+                data["ID"] = ID
+                data["name"] = name
+                data["description"] = ""
+                data["imgPath"] = settings.IMAGEPATH + str(data["ID"]) + ".jpg"
+                try:
+                    # 储存数据库操作
+                    Info.objects.create(**data)
+                    # 生成图片操作
+                    cv2.imwrite(data["imgPath"], imgArr)
+                    # 生成特征向量并存储
+                    addFaceVec(imgArr, data["ID"], getRep)
+                except:
+                    return Response({"detail": "Database Info saved Error!"})
+
+        return Response({"detail": "all face has been saved!"})
 
 
 

@@ -2,6 +2,7 @@
 *.dat
 *.h5
 *.jpg
+*.png
 *.npy
 *.pth
 *.pkl

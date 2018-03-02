@@ -133,6 +133,7 @@ STATIC_URL = '/static/'
 CANDIDATEPATH = BASE_DIR+"/media/candidate_vec.pkl"
 IMAGEPATH = BASE_DIR+"/media/"
 files = os.listdir(IMAGEPATH)
+RAWFACEIMGPATH = BASE_DIR+"/raw_face_img/"
 
 # 如果候选集路径，就加载，没有则新生成一个dataframe
 if  os.path.exists(CANDIDATEPATH):

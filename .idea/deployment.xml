@@ -12,7 +12,7 @@
       <paths name="rinc_gpu1">
         <serverdata>
           <mappings>
-            <mapping deploy="/python_project/face_id_backend" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="face_id_backend" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
