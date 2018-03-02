@@ -73,6 +73,14 @@
 	else:
 	    CANDIDATE = pd.DataFrame()
 
+### face_recognition ###
+
+此目录是django工程的app目录，是django主要的服务端程序
+
+- my_serializers.py 定制的序列化器，用来通信
+- serializers.py django-rest的序列化器，已废弃
+- urls.py url文件
+- views.py 中间逻辑层，实现功能的主要代码均在这个文件下，具体实现的API见下文。
 
 ## API接口文档 ##
 
