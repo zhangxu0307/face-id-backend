@@ -35,7 +35,6 @@ def run_first_stage(image, net, scale, threshold):
     offsets = output[0].data.numpy()
     # probs: probability of a face at each sliding window
     # offsets: transformations to true bounding boxes
-
     boxes = _generate_bboxes(probs, offsets, scale, threshold)
     if len(boxes) == 0:
         return None

@@ -4,9 +4,17 @@ import torch.nn.functional as F
 from collections import OrderedDict
 import numpy as np
 import os
+from django.conf import settings
 
-# fileDir = os.path.dirname(os.path.realpath(__file__))
+#fileDir = os.path.dirname(os.path.realpath(__file__))
 # modelDir = os.path.join(fileDir, 'models')
+
+# django 目录写法
+#modelDir = os.path.join(settings.BASE_DIR, 'face_algorithm', 'models', 'mtcnn_pytorch')
+
+# 单文件测试目录写法
+projectDir = os.path.abspath('.') #获得当前工作目录的父目录
+modelDir = os.path.join(projectDir, 'models', 'mtcnn_pytorch')
 
 class Flatten(nn.Module):
 
@@ -55,7 +63,7 @@ class PNet(nn.Module):
         self.conv4_1 = nn.Conv2d(32, 2, 1, 1)
         self.conv4_2 = nn.Conv2d(32, 4, 1, 1)
 
-        weights = np.load('././models/mtcnn_pytorch/pnet.npy')[()]
+        weights = np.load(modelDir+'/pnet.npy')[()]
         for n, p in self.named_parameters():
             p.data = torch.FloatTensor(weights[n])
 
@@ -100,7 +108,7 @@ class RNet(nn.Module):
         self.conv5_1 = nn.Linear(128, 2)
         self.conv5_2 = nn.Linear(128, 4)
 
-        weights = np.load('././models/mtcnn_pytorch/rnet.npy')[()]
+        weights = np.load(modelDir+'/rnet.npy')[()]
         for n, p in self.named_parameters():
             p.data = torch.FloatTensor(weights[n])
 
@@ -151,7 +159,7 @@ class ONet(nn.Module):
         self.conv6_2 = nn.Linear(256, 4)
         self.conv6_3 = nn.Linear(256, 10)
 
-        weights = np.load('././models/mtcnn_pytorch/onet.npy')[()]
+        weights = np.load(modelDir+'/onet.npy')[()]
         for n, p in self.named_parameters():
             p.data = torch.FloatTensor(weights[n])
 

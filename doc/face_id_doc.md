@@ -58,7 +58,7 @@
 
 ### face_id_backend ###
 
-此目录下settings.py 配置有一些模型文件和人脸图像文件储存的默认路径，其余都为django自动生成的常规配置
+此目录下settings.py 配置有一些模型文件和人脸图像文件储存的默认路径以及两个重要的算法参数，其余都为django自动生成的常规配置
 
     STATIC_URL = '/static/'
 
@@ -72,6 +72,9 @@
 	    CANDIDATE = loadFeatureVec(CANDIDATEPATH, format="pkl")
 	else:
 	    CANDIDATE = pd.DataFrame()
+
+	SIMILARITY_THRESHOLD = 0.6 # 相似度阈值
+	JOINT_BAYES_THRESHOLD = 300  # joint bayes的阈值
 
 ### face_recognition ###
 
@@ -95,18 +98,26 @@
 	- 方法：POST
 	- 参数：json，包括picture、ID、name等字段
 	- 返回： "detail": "new face has been saved!"
+	
 - http://114.212.84.6:8888/api/delete/
 	- 功能：删除指定单个人的记录
 	- 方法：POST
-	- 参数：学号
+	- 参数：delete_ID:学号
 	- 返回： "detail": "delete success!"
 - http://114.212.84.6:8888/api/register_batch/
 	- 功能：从文件中批量构建人脸数据库信息
 	- 方法：POST
 	- 参数：无
 	- 返回： "detail": "all face has been saved!"
+	
 - http://114.212.84.6:8888/api/clear/
 	- 功能：清除所有数据信息
 	- 方法：POST
 	- 参数：无
 	- 返回： "detail": "all data has been cleaned!"
+
+
+## 阈值修改 ##
+
+- SIMILARITY_THRESHOLD 余弦相似度阈值，范围在-1~1之间，大部分分布于0~1之间，是召回最相似的人的检查标准。
+- JOINT_BAYES_THRESHOLD 联合贝叶斯阈值，两两验证阈值，一般本人joint bayes得分会在250以上，非本人得分一般在100左右，理想情况是负值。

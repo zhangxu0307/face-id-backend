@@ -28,7 +28,6 @@ def findLandMarks_MTCNN_pytorch(img):
     landMarkList = []
 
     image = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB)) # opencv格式转PIL Image格式
-
     bounding_boxes, landmarks = detect_faces(image)
     for i in range(5):                       # 整理landmark为指定形式list
         landMarkList.append(landmarks[0][i])

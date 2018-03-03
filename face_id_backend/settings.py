@@ -142,3 +142,6 @@ if  os.path.exists(CANDIDATEPATH):
 else:
     CANDIDATE = pd.DataFrame()
 
+SIMILARITY_THRESHOLD = 0.6 # 相似度阈值
+JOINT_BAYES_THRESHOLD = 300  # joint bayes的阈值
+
