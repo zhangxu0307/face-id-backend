@@ -15,6 +15,7 @@
 - db.sqlite3 数据库文件，可迁移到mysql数据库
 - manage.py django工程启动python文件
 - README.md 项目说明文档
+- raw_face_img 原始人类图像数据，可以在此文件夹下批量加入数据库，文件组织形式为人脸的jpg或png格式图片，图片文件名为学号+空格+姓名+文件类型后缀名的格式
 
 ## 详细说明 ##
 
