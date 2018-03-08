@@ -33,6 +33,8 @@ def calcCossimilarity(imgArr, candidate, getRep):
     candidateArr = np.squeeze(np.array(candidateArr.tolist())) # 转化为numpy数组
     candidateArr = np.reshape(candidateArr, (-1, 2048))  # 防止出现一个人的情况
 
+    print(candidate)
+
     t2 = time.time()
     testVec = getRep(imgArr)
 
@@ -40,7 +42,7 @@ def calcCossimilarity(imgArr, candidate, getRep):
     scoreMat = cosine_similarity(testVec, candidateArr)[0] # 此处是个嵌套的array
 
     t4 = time.time()
-    print(scoreMat)
+    #print(scoreMat)
     sortIndex = np.argsort(scoreMat)
     resultID = candidate.index[sortIndex].values[-1]
     t5 = time.time()

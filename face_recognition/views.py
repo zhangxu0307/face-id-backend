@@ -4,6 +4,7 @@ from face_algorithm.id_utils import  calcCossimilarity, addFaceVec, calcEuclidDi
 from face_algorithm.joint_bayes_face import jointBayesVerify
 import cv2
 import os
+import pandas as pd
 
 # 特征向量提取算法选择
 #from face_algorithm.face_id import getRep_openface
@@ -126,7 +127,7 @@ class DeleteAllRecord(APIView):
             filePath = os.path.join(settings.IMAGEPATH, f)
             if os.path.isfile(filePath):
                 os.remove(filePath)
-
+        settings.CANDIDATE = pd.DataFrame()
         # 清理数据库
         Info.objects.all().delete()
 
