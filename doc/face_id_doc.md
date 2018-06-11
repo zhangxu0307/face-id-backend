@@ -33,11 +33,11 @@
 - face_id.py open face模型
 - vgg_face.py vgg face模型
 - joint_bayes_face.py 联合贝叶斯模型，
-- facenet_tf.py facenet 模型 tensorflow版本，测试效果不好，未集成到django
-- light_cnn_pytorch.py lightcnn模型pytorch版本，测试效果良好，未集成到django
-- light_cnn_tf.py lightcnn模型tensorflow版本，测试效果不好，未集成到django
-- center_loss_face.py center loss模型，测试效果良好，未集成到django
-- siam_CNN_face.py 孪生网络，未训练
+- <del> facenet_tf.py facenet 模型 tensorflow版本，测试效果不好，未集成到django </del> 
+- <del> light_cnn_pytorch.py lightcnn模型pytorch版本，测试效果良好，未集成到django</del>
+- <del> light_cnn_tf.py lightcnn模型tensorflow版本，测试效果不好，未集成到django</del>
+- <del> center_loss_face.py center loss模型，测试效果良好，未集成到django</del>
+- <del> siam_CNN_face.py 孪生网络，未训练</del>
 - sphere_face_pt.py sphere face模型pytorch版本，测试效果良好，未集成到django
 
 以上人脸识别基本流程为：
@@ -49,9 +49,10 @@
 #### 数据集相关 #####
 
 此部分为数据集训练测试相关操作，与django系统应用无关
+为减少工程代码的冗余和强耦合性，此部分单独集成至face_algorithm_explore project中，具体github链接在[https://github.com/zhangxu0307/face_algorithm_explore](https://github.com/zhangxu0307/face_algorithm_explore "face_algorithm_explore")
 
-- webface.py webface相关操作
-- lfw.py lfw相关操作
+- <del>webface.py webface相关操作</del>
+- <del>lfw.py lfw相关操作</del>
 
 #### 特征向量的储存于操作 ####
 
@@ -61,21 +62,36 @@
 
 此目录下settings.py 配置有一些模型文件和人脸图像文件储存的默认路径以及两个重要的算法参数，其余都为django自动生成的常规配置
 
-    STATIC_URL = '/static/'
-
-	CANDIDATEPATH = BASE_DIR+"/media/candidate_vec.pkl"
-	IMAGEPATH = BASE_DIR+"/media/"
+	STATIC_URL = '/static/'
+	METHOD = "VGGface"  # 人脸算法选择
+	CANDIDATEPATH = BASE_DIR + "/media/candidate_vec.pkl"  # 候选特征向量储存文件
+	IMAGEPATH = BASE_DIR + "/media/"  # 候选人人脸图片目录
 	files = os.listdir(IMAGEPATH)
+	RAWFACEIMGPATH = BASE_DIR+"/raw_face_img/"  # 需要批量加入的候选人人脸图片
+	
+	print("system basic config info....")
+	print("CANDIDATEPATH:", CANDIDATEPATH)
+	print("IMAGEPATH:", IMAGEPATH)
+	print("RAWFACEIMGPATH:", RAWFACEIMGPATH)
 	
 	# 如果候选集路径，就加载，没有则新生成一个dataframe
-	if  os.path.exists(CANDIDATEPATH):
-	    #CANDIDATE = pd.read_pickle(CANDIDATEPATH)
+	if os.path.exists(CANDIDATEPATH):
 	    CANDIDATE = loadFeatureVec(CANDIDATEPATH, format="pkl")
 	else:
 	    CANDIDATE = pd.DataFrame()
+	
+	# 算法中两个关键性阈值
+	SIMILARITY_THRESHOLD = 0.6  # 相似度阈值
+	JOINT_BAYES_THRESHOLD = 50  # joint bayes的阈值
 
-	SIMILARITY_THRESHOLD = 0.6 # 相似度阈值
-	JOINT_BAYES_THRESHOLD = 300  # joint bayes的阈值
+### 切换算法的方法 ###
+
+目前本系统可以支持两种人脸识别算法，分别是sphereface和VGGface，具体方法需要再settings.py中指定即可。然而由于存在非常神奇的兼容性问题，其他py文件某些部分也需要做相应改动。改动之处在：
+
+1. face_algorithm/id_utils.py 中的第一行
+2. face_recognition/views.py 中的第一行
+
+以上两部分请按照注释的要求做相应改动即可。
 
 ### face_recognition ###
 
@@ -121,4 +137,4 @@
 ## 阈值修改 ##
 
 - SIMILARITY_THRESHOLD 余弦相似度阈值，范围在-1~1之间，大部分分布于0~1之间，是召回最相似的人的检查标准。
-- JOINT_BAYES_THRESHOLD 联合贝叶斯阈值，两两验证阈值，一般本人joint bayes得分会在250以上，非本人得分一般在100左右，理想情况是负值。
+- JOINT_BAYES_THRESHOLD 联合贝叶斯阈值，两两验证阈值，如果使用VGGface模型，一般本人joint bayes得分会在250以上，非本人得分一般在100左右，理想情况是负值。如果使用sphereface模型，一般本人会在70-100之间，不是本人一般在-20~20之间.

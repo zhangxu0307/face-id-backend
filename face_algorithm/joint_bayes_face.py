@@ -4,7 +4,7 @@ from django.conf import settings
 import os
 
 # 加载joint bayes模型参数
-vecName = "VGGface" # joint bayes 支持的特征向量
+vecName = settings.METHOD  # joint bayes 支持的特征向量, 目前已经训练好了openface、VGGface和sphereface的JB模型
 modelPath = os.path.join(settings.BASE_DIR+"/face_algorithm/models/joint_bayes", vecName) # django工程路径写法
 A_path = os.path.join(modelPath, "A.pkl")
 G_path = os.path.join(modelPath, "G.pkl")

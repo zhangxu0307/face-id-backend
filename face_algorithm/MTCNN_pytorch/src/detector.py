@@ -64,6 +64,7 @@ def detect_faces(image, min_face_size=20.0,
     bounding_boxes = np.vstack(bounding_boxes)
 
     keep = nms(bounding_boxes[:, 0:5], nms_thresholds[0])
+
     bounding_boxes = bounding_boxes[keep]
 
     # use offsets predicted by pnet to transform bounding boxes
@@ -118,7 +119,5 @@ def detect_faces(image, min_face_size=20.0,
     keep = nms(bounding_boxes, nms_thresholds[2], mode='min')
     bounding_boxes = bounding_boxes[keep]
     landmarks = landmarks[keep]
-
-
 
     return bounding_boxes, landmarks

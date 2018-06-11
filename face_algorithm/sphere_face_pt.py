@@ -1,29 +1,26 @@
-import cv2
 import torch
 from torch.autograd import Variable
-torch.backends.cudnn.bencmark = True
 import face_algorithm.sphere_face_pytorch.net_sphere as net_sphere
 from face_algorithm.sphere_face_pytorch.matlab_cp2tform import get_similarity_transform_for_cv2
 
 import numpy as np
 from face_algorithm.landmarks_mtcnn import findLandMarks_MTCNN_pytorch
 import os
-from django.conf import settings
+
+import cv2
 
 # 加载sphereface_pytorch模型
 net = getattr(net_sphere, 'sphere20a')()
 # django 路径写法
-#modelPath = os.path.join(settings.BASE_DIR+"/face_algorithm/models/sphereface/sphere20a_20171020.pth")
-# 单py文件测试路径写法
-projectDir = os.path.abspath('.') #获得当前工作目录的父目录
-modelPath = os.path.join(projectDir, 'models', 'sphereface', 'sphere20a_20171020.pth')
+modelPath = "../face_algorithm/models/sphereface/sphere20a_20171020.pth"
+# 单元测试py文件测试路径写法
+# modelPath = "face_algorithm/models/sphereface/sphere20a_20171020.pth"
 
 net.load_state_dict(torch.load(modelPath))
 net.cuda()
 net.eval()
 net.feature = True
 
-from face_algorithm.detect_align import findAlignFace_dlib # 此处命令行调用需要去掉face_algorithm
 
 # 图像对齐
 def alignment(src_img,src_pts):
@@ -48,10 +45,6 @@ def getRep_SphereFace(rgbImg):
 
     alignedFace = alignment(rgbImg, landmarksList)
 
-    # alignedFace = findAlignFace_dlib(rgbImg, 112)
-    # alignedFace = cv2.resize(alignedFace, (96, 112))
-    # print(alignedFace.shape)
-
     alignedFace = alignedFace.astype(np.float64)
     alignedFace = (alignedFace - 127.5) / 128.0
     alignedFace = np.transpose(alignedFace, [2, 0, 1])
@@ -64,8 +57,8 @@ def getRep_SphereFace(rgbImg):
     rep = np.reshape(rep, (512,))
     return rep
 
-if __name__ == '__main__':
 
+if __name__ == '__main__':
 
     imgPath1 = "../test_json/1.jpg"
     imgPath2 = "../test_json/2.jpg"

@@ -9,11 +9,11 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
-
+from face_algorithm.id_utils import loadFeatureVec
 import os
 import numpy as np
 import pandas as pd
-from face_algorithm.id_utils import loadFeatureVec
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -129,19 +129,24 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-
-CANDIDATEPATH = BASE_DIR+"/media/candidate_vec.pkl"
-IMAGEPATH = BASE_DIR+"/media/"
+METHOD = "VGGface"  # 人脸算法选择
+CANDIDATEPATH = BASE_DIR + "/media/candidate_vec.pkl"  # 候选特征向量储存文件
+IMAGEPATH = BASE_DIR + "/media/"  # 候选人人脸图片目录
 files = os.listdir(IMAGEPATH)
-RAWFACEIMGPATH = BASE_DIR+"/raw_face_img/"
+RAWFACEIMGPATH = BASE_DIR+"/raw_face_img/"  # 需要批量加入的候选人人脸图片
+
+print("system basic config info....")
+print("CANDIDATEPATH:", CANDIDATEPATH)
+print("IMAGEPATH:", IMAGEPATH)
+print("RAWFACEIMGPATH:", RAWFACEIMGPATH)
 
 # 如果候选集路径，就加载，没有则新生成一个dataframe
-if  os.path.exists(CANDIDATEPATH):
-    #CANDIDATE = pd.read_pickle(CANDIDATEPATH)
+if os.path.exists(CANDIDATEPATH):
     CANDIDATE = loadFeatureVec(CANDIDATEPATH, format="pkl")
 else:
     CANDIDATE = pd.DataFrame()
 
-SIMILARITY_THRESHOLD = 0.7 # 相似度阈值
-JOINT_BAYES_THRESHOLD = 250  # joint bayes的阈值
+# 算法中两个关键性阈值
+SIMILARITY_THRESHOLD = 0.6  # 相似度阈值
+JOINT_BAYES_THRESHOLD = 50  # joint bayes的阈值
 
